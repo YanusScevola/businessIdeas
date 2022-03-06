@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.example.myapplication.ui.fragments.swipeplay
 
 import android.os.Bundle
 import android.util.Log
@@ -93,10 +93,10 @@ class SwipePlayFragment : Fragment(), CardStackListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         return if (id == R.id.add_new_card) {
-            activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.replace(R.id.fragment_container, CreateCardFragment.newInstance("", ""))
-                ?.commit()
+//            activity?.supportFragmentManager
+//                ?.beginTransaction()
+//                ?.replace(R.id.fragment_container, CreateCardFragment.newInstance("", ""))
+//                ?.commit()
             true
         } else super.onOptionsItemSelected(item)
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.myapplication.ui.fragments.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_firstFragment"
+            app:destination="@id/firstFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.myapplication.ui.fragments.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_guideFragment2"
+            app:destination="@id/guideFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/guideFragment"
+        android:name="com.example.myapplication.ui.fragments.guide.GuideFragment"
+        android:label="fragment_guide"
+        tools:layout="@layout/fragment_guide"/>
+
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.example.myapplication.ui.fragments.FirstFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_firstFragment_to_loginFragment"
+            app:destination="@id/loginFragment"/>
+        <action
+            android:id="@+id/action_firstFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+
+</navigation>
