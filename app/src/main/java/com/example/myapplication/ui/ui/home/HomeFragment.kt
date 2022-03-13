@@ -36,12 +36,7 @@ class HomeFragment : Fragment() {
 
 
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                activity?.moveTaskToBack(true);
-            }
 
-        });
 
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {

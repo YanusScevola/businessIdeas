@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.createcard
+package com.example.myapplication.ui.core.createcard
 
 import android.os.Bundle
 import android.view.LayoutInflater

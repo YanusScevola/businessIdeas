@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.guide
+package com.example.myapplication.ui.core.likedcards
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import com.example.myapplication.R
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class LikedCardsListFragment : Fragment() {
 
+    private val ARG_PARAM1 = "param1"
+    private val ARG_PARAM2 = "param2"
 
-class GuideFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -24,15 +24,15 @@ class GuideFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_guide, container, false)
+    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
+        return inflater.inflate(R.layout.fragment_liked_cards_list, container, false)
     }
 
     companion object {
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            GuideFragment().apply {
+            LikedCardsListFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

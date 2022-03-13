@@ -1,20 +1,16 @@
-    package com.example.myapplication.ui.fragments.register
+package com.example.myapplication.ui.core.aboutbusiness
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-
-class RegisterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+class AboutBusinessFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -27,22 +23,13 @@ class RegisterFragment : Fragment() {
     }
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
-        return inflater.inflate(R.layout.fragment_register, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button1).setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_guideFragment2)
-        }
-
+        return inflater.inflate(R.layout.fragment_about_business, container, false)
     }
 
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            RegisterFragment().apply {
+            AboutBusinessFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

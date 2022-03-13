@@ -1,18 +1,16 @@
-package com.example.myapplication.ui.fragments
+package com.example.myapplication.ui.core.myofice
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class FirstFragment : Fragment() {
+class MyOfficeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -25,25 +23,13 @@ class FirstFragment : Fragment() {
     }
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
-        return inflater.inflate(R.layout.fragment_first, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button1).setOnClickListener {
-            findNavController().navigate(R.id.action_firstFragment_to_loginFragment)
-        }
-
-        view.findViewById<Button>(R.id.button2).setOnClickListener {
-            findNavController().navigate(R.id.action_firstFragment_to_registerFragment)
-        }
+        return inflater.inflate(R.layout.fragment_my_office, container, false)
     }
 
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            FirstFragment().apply {
+            MyOfficeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

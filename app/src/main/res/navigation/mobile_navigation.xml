@@ -7,20 +7,36 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.myapplication.ui.ui.home.HomeFragment"
+        android:name="com.example.myapplication.ui.core.home.HomeFragment"
         android:label="@string/menu_home"
-        app:defaultNavHost="true"
-        tools:layout="@layout/fragment_home" />
+        app:defaultNavHost="false"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_my_office"
+            app:destination="@id/nav_my_office" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.myapplication.ui.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_about_business"
+        android:name="com.example.myapplication.ui.core.aboutbusiness.AboutBusinessFragment"
+        android:label="fragment_about_business"
+        tools:layout="@layout/fragment_about_business" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.myapplication.ui.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_community"
+        android:name="com.example.myapplication.ui.core.community.CommunityFragment"
+        android:label="fragment_community"
+        tools:layout="@layout/fragment_community" />
+    <fragment
+        android:id="@+id/nav_donat"
+        android:name="com.example.myapplication.ui.core.donat.DonatFragment"
+        android:label="fragment_donat"
+        tools:layout="@layout/fragment_donat" />
+    <fragment
+        android:id="@+id/nav_my_office"
+        android:name="com.example.myapplication.ui.core.myofice.MyOfficeFragment"
+        android:label="fragment_my_office"
+        tools:layout="@layout/fragment_my_office" />
+
+
 </navigation>
