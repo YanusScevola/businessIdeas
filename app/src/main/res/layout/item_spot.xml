@@ -1,89 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- https://qiita.com/ntsk/items/dac92596742e18470a55 -->
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.wajahatkarim3.easyflipview.EasyFlipView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/selectableItemBackground"
-    android:foreground="?attr/selectableItemBackground"
-    app:cardUseCompatPadding="true"
-    app:cardPreventCornerOverlap="false"
-    app:cardCornerRadius="8dp"
-    app:cardBackgroundColor="@android:color/white">
+    app:flipDuration="1000"
+    app:autoFlipBack="false"
+    app:flipEnabled="true"
+    app:flipFrom="front"
+    app:flipOnTouch="true"
+    app:flipType="horizontal">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/item_image"
+    <!-- Front Layout Goes Here -->
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:riv_corner_radius="8dp"/>
+        android:src="@color/black" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:padding="16dp"
-        android:background="@drawable/gradation_black">
-
-        <TextView
-            android:id="@+id/item_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="26sp"/>
-
-        <TextView
-            android:id="@+id/item_city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/left_overlay"
+    <!-- Front Layout Goes Here -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/overlay_black">
+        android:background="?attr/selectableItemBackground"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="8dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/skip_white_120dp"
-            android:layout_gravity="center"/>
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="8dp" />
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="222dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/gradation_black"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <FrameLayout
-        android:id="@+id/right_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/overlay_black">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/like_white_120dp"
-            android:layout_gravity="center"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/black"
+                    android:src="@drawable/lable"
+                    app:civ_border_color="#FF000000"
+                    app:civ_border_width="2dp" />
 
-    </FrameLayout>
+                <TextView
+                    android:id="@+id/item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoSizeMaxTextSize="100sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/top_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/bottom_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-</androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/tv_business_cost_zero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="0$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/item_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Cтоимость бизнеса"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_business_cost_sum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="50.000$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                    android:layout_width="260dp"
+                    android:layout_height="18dp"
+                    app:rcBackgroundColor="#0A000000"
+                    app:rcMax="50000"
+                    app:rcProgress="30000"
+                    app:rcProgressColor="#CDB117"
+                    app:rcRadius="80dp"
+                    app:rcReverse="false"
+                    app:rcSecondaryProgress="50000"
+                    app:rcSecondaryProgressColor="#40009688"
+                    app:rcTextPositionPriority="inside"
+                    app:rcTextProgress="30.000$"
+                    app:rcTextProgressColor="@android:color/white"
+                    app:rcTextProgressSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/tv_payback_period_zero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="0 дней"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_payback_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Срок окупаемости"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_payback_period_sum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="5 лет"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                    android:layout_width="260dp"
+                    android:layout_height="18dp"
+                    app:rcBackgroundColor="#0A000000"
+                    app:rcMax="50"
+                    app:rcProgress="24"
+                    app:rcProgressColor="#00A4FD"
+                    app:rcRadius="80dp"
+                    app:rcReverse="false"
+                    app:rcSecondaryProgress="50"
+                    app:rcSecondaryProgressColor="#40009688"
+                    app:rcTextPositionPriority="inside"
+                    app:rcTextProgress="24 мес."
+                    app:rcTextProgressColor="@android:color/white"
+                    app:rcTextProgressSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/tv_donat_invest_zero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:maxLines="1"
+                        android:text="👍0"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_donat_invest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="Уровень риска"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_donat_invest_sum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text="🔥10"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                    android:layout_width="260dp"
+                    android:layout_height="18dp"
+                    app:rcBackgroundColor="#0A000000"
+                    app:rcMax="10"
+                    app:rcProgress="2"
+                    app:rcProgressColor="#EF5350"
+                    app:rcRadius="80dp"
+                    app:rcReverse="false"
+                    app:rcSecondaryProgress="10"
+                    app:rcSecondaryProgressColor="#40009688"
+                    app:rcTextPositionPriority="inside"
+                    app:rcTextProgress="2"
+                    app:rcTextProgressColor="@android:color/white"
+                    app:rcTextProgressSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:text="14"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:src="@drawable/ic_baseline_thumb_up_24" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:src="@drawable/ic_baseline_thumb_down_24" />
+
+                <TextView
+                    android:id="@+id/tv_dislike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:text="88"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/left_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/skip_white_120dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/like_white_120dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/top_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bottom_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</com.wajahatkarim3.easyflipview.EasyFlipView>

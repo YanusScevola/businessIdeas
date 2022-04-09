@@ -28,17 +28,22 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         viewBinding true
     }
+
     viewBinding {
         enabled = true
     }
 
 }
+
+
 
 dependencies {
     def nav_version = "2.4.1"
@@ -77,6 +82,15 @@ dependencies {
 
     // View
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    // CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // RoundCornerProgressBar
+    implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
+
+    // EasyFlipView
+    implementation 'com.wajahatkarim:EasyFlipView:3.0.3'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

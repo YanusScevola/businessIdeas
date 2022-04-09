@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.start.first
+package com.example.myapplication.ui.first.splash
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

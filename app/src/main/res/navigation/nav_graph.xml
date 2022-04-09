@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.myapplication.ui.start.login.LoginFragment"
+        android:name="com.example.myapplication.ui.first.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.myapplication.ui.start.register.RegisterFragment"
+        android:name="com.example.myapplication.ui.first.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
@@ -27,13 +27,13 @@
 
     <fragment
         android:id="@+id/guideFragment"
-        android:name="com.example.myapplication.ui.start.guide.GuideFragment"
+        android:name="com.example.myapplication.ui.first.guide.GuideFragment"
         android:label="fragment_guide"
         tools:layout="@layout/fragment_guide"/>
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.example.myapplication.ui.start.first.FirstFragment"
+        android:name="com.example.myapplication.ui.first.splash.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first">
         <action

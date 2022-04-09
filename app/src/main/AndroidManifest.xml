@@ -17,7 +17,7 @@
             android:label="@string/title_activity_navigate_drawer"
             />
         <activity
-            android:name=".ui.start.MainActivity"
+            android:name=".ui.first.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

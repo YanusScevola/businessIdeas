@@ -1,4 +1,4 @@
-    package com.example.myapplication.ui.start.register
+    package com.example.myapplication.ui.first.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

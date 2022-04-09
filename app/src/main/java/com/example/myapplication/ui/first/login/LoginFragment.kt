@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.start.login
+package com.example.myapplication.ui.first.login
 
 import android.content.Intent
 import android.os.Bundle

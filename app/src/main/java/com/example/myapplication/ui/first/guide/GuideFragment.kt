@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.start.guide
+package com.example.myapplication.ui.first.guide
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

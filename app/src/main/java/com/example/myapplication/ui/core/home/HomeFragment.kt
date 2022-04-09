@@ -283,7 +283,7 @@ class HomeFragment : Fragment(), CardStackListener {
     private fun createSpot(): Spot {
         return Spot(
             name = "Yasaka Shrine",
-            city = "Kyoto",
+            city = "Сумма инвестиций",
             url = "https://source.unsplash.com/Xq1ntWruZQI/600x800"
         )
     }
