@@ -149,14 +149,13 @@
                     app:rcTextProgressColor="@android:color/white"
                     app:rcTextProgressSize="15sp" />
 
-
                 <TextView
                     android:id="@+id/tv_payback_period_zero"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="0 дней"
+                    android:text="0$"
                     android:textColor="@android:color/white"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -169,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Срок окупаемости"
+                    android:text="Доход в год"
                     android:textColor="@android:color/white"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -183,13 +182,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="5 лет"
+                    android:text="50.000$"
                     android:textColor="@android:color/white"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar4"
                     app:layout_constraintEnd_toEndOf="parent" />
-
 
                 <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                     android:id="@+id/textRoundCornerProgressBar4"
@@ -200,15 +198,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:rcBackgroundColor="#0A000000"
-                    app:rcMax="50"
-                    app:rcProgress="24"
-                    app:rcProgressColor="#00A4FD"
+                    app:rcMax="50000"
+                    app:rcProgress="10000"
+                    app:rcProgressColor="#BDAE21"
                     app:rcRadius="80dp"
                     app:rcReverse="false"
-                    app:rcSecondaryProgress="50"
+                    app:rcSecondaryProgress="50000"
                     app:rcSecondaryProgressColor="#40009688"
                     app:rcTextPositionPriority="inside"
-                    app:rcTextProgress="24 мес."
+                    app:rcTextProgress="10.000$"
                     app:rcTextProgressColor="@android:color/white"
                     app:rcTextProgressSize="15sp" />
 
@@ -220,9 +218,9 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:maxLines="1"
-                    android:text="0"
+                    android:text="👍"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar3"
                     app:layout_constraintStart_toStartOf="@+id/tv_business_cost_zero" />
@@ -234,7 +232,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="Уровень риска"
+                    android:text="Уровень сложности"
                     android:textColor="@android:color/white"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -249,9 +247,9 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="🔥10"
+                    android:text="😭"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar3"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -265,15 +263,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:rcBackgroundColor="#0A000000"
-                    app:rcMax="10"
+                    app:rcMax="3"
                     app:rcProgress="2"
                     app:rcProgressColor="#EF5350"
                     app:rcRadius="80dp"
                     app:rcReverse="false"
-                    app:rcSecondaryProgress="10"
+                    app:rcSecondaryProgress="3"
                     app:rcSecondaryProgressColor="#40009688"
                     app:rcTextPositionPriority="inside"
-                    app:rcTextProgress="2"
+                    app:rcTextProgress="Средний"
                     app:rcTextProgressColor="@android:color/white"
                     app:rcTextProgressSize="15sp" />
 
@@ -380,8 +378,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/overlay_black">
 
-
-
         </FrameLayout>
 
         <FrameLayout
@@ -389,8 +385,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/overlay_black">
-
-
 
         </FrameLayout>
 

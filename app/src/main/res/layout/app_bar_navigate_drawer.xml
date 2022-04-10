@@ -20,18 +20,18 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/teal_700"
+                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:popupTheme="@style/PopupOverlay" />
+                app:popupTheme="@style/PopupOverlay"
+                android:theme="@style/PopupOverlay"/>
 
-            <TextView
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logo"
                 android:gravity="center"
-                android:text="Text"
-                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/toolbar"
                 app:layout_constraintStart_toStartOf="parent"
