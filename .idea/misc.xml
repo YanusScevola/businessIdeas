@@ -40,6 +40,7 @@
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_card_rating_list.xml" value="0.10346301838392476" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_community.xml" value="0.11115861479264642" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_create_card.xml" value="0.264" />
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_detali_card.xml" value="0.12058023572076156" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_donat.xml" value="0.1" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_first.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_first2.xml" value="0.10008357709987463" />
@@ -52,7 +53,8 @@
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_my_office.xml" value="0.1" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_register.xml" value="0.10008357709987463" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
-        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_spot.xml" value="0.176" />
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/home_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_spot.xml" value="0.26500732064421667" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/nav_header_navigate_drawer.xml" value="0.1" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/overlay.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/play_screan_fragment.xml" value="0.10989583333333333" />

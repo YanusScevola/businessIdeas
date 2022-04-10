@@ -10,20 +10,22 @@ import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
-import com.example.myapplication.SpotDiffCallback
+import com.example.myapplication.cardview.internal.SpotDiffCallback
 import com.example.myapplication.cardview.internal.*
 import com.example.myapplication.model.Spot
 
 
-class HomeFragment : Fragment(), CardStackListener {
+class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickListener {
 
     private val model: HomeViewModel by activityViewModels()
 
     private val drawerLayout by lazy { view?.findViewById<DrawerLayout>(R.id.drawer_layout) }
-//    private val cardStackView by lazy { view?.findViewById<CardStackView>(R.id.card_stack_view) }
+
+    //    private val cardStackView by lazy { view?.findViewById<CardStackView>(R.id.card_stack_view) }
 //    private val manager by lazy { CardStackLayoutManager(requireContext(), this) }
 //    private val adapter by lazy { CardStackAdapter(createSpots()) }
     private var adapter: CardStackAdapter? = null
@@ -43,7 +45,8 @@ class HomeFragment : Fragment(), CardStackListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.home_fragment, container, false)
 
     }
@@ -54,9 +57,10 @@ class HomeFragment : Fragment(), CardStackListener {
 
         cardStackView = view.findViewById(R.id.card_stack_view)
         manager = CardStackLayoutManager(requireContext(), this)
-        adapter = CardStackAdapter(createSpots())
+        adapter = CardStackAdapter(createSpots(), this)
         setupCardStackView()
         setupButton()
+
 
 //        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
 //            override fun handleOnBackPressed() {
@@ -111,7 +115,6 @@ class HomeFragment : Fragment(), CardStackListener {
             true
         } else super.onOptionsItemSelected(item)
     }
-
 
 
     private fun setupCardStackView() {
@@ -188,7 +191,7 @@ class HomeFragment : Fragment(), CardStackListener {
         val new = createSpots()
         val callback = SpotDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
-        adapter!!setSpots(new)
+        adapter!! setSpots (new)
         result.dispatchUpdatesTo(adapter!!)
     }
 
@@ -290,7 +293,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
     private fun createSpots(): List<Spot> {
         val spots = ArrayList<Spot>()
-        model.spotArray.observe(viewLifecycleOwner){
+        model.spotArray.observe(viewLifecycleOwner) {
             spots.addAll(it)
         }
 
@@ -322,5 +325,13 @@ class HomeFragment : Fragment(), CardStackListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onClick(flipSide: String) {
+        if (flipSide == "BACK_SIDE") {
+            findNavController().navigate(R.id.action_nav_home_to_detailCardFragment2)
+
+        }
+
     }
 }

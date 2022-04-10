@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.cardview.internal
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.model.Spot
