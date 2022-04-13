@@ -10,6 +10,7 @@
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_baseline_add_box_24.xml" value="0.147" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1215" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.121" />
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_baseline_comment_24.xml" value="0.116" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_baseline_thumb_down_24.xml" value="0.159" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_baseline_thumb_up_24.xml" value="0.159" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1215" />
@@ -53,8 +54,8 @@
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_my_office.xml" value="0.1" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_register.xml" value="0.10008357709987463" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
-        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/home_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_spot.xml" value="0.26500732064421667" />
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/home_fragment.xml" value="0.16" />
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_spot.xml" value="0.15780730897009967" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/nav_header_navigate_drawer.xml" value="0.1" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/overlay.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/play_screan_fragment.xml" value="0.10989583333333333" />
@@ -64,6 +65,7 @@
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/menu/navigate_drawer.xml" value="0.11329628046173579" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/menu/navigation_main_activity.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/menu/navigation_toolbar.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/menu/tabs.xml" value="0.13552800342026508" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.106" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.106" />
       </map>

@@ -23,6 +23,7 @@
                 android:id="@+id/button_container"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:layout_marginBottom="8dp"
                 android:layout_above="@+id/container_navigation"
                 android:clipChildren="false"
                 android:orientation="horizontal">
@@ -71,23 +72,26 @@
                 android:id="@+id/container_navigation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/layout_bg"
+                android:gravity="center"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:gravity="center"
-                android:padding="5dp"
                 android:layout_alignParentBottom="true">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="wrap_content"
+                <nl.joery.animatedbottombar.AnimatedBottomBar
+                    android:id="@+id/bottom_bar"
+                    android:background="#F4F3F3"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="100dp"/>
-
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
+                    app:abb_selectedTabType="text"
+                    app:abb_indicatorAppearance="round"
+                    app:abb_indicatorMargin="16dp"
+                    app:abb_indicatorHeight="4dp"
+                    app:abb_indicatorColor="@color/black"
+                    app:abb_tabs="@menu/tabs"
+                    app:abb_selectedIndex="1"
+                    app:abb_iconSize="30dp"
+                    app:abb_tabColorSelected="@color/black"
+                    app:abb_tabColorDisabled="@color/black" />
 
             </LinearLayout>
 

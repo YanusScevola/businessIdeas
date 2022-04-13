@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
 import com.example.myapplication.R
 
 
@@ -33,6 +34,8 @@ class CreateCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
+
+
     }
 
     companion object {

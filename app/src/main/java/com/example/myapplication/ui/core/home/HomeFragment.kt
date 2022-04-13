@@ -17,6 +17,7 @@ import com.example.myapplication.R
 import com.example.myapplication.cardview.internal.SpotDiffCallback
 import com.example.myapplication.cardview.internal.*
 import com.example.myapplication.model.Spot
+import com.example.myapplication.ui.core.createcard.CreateCardFragment
 
 
 class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickListener {
@@ -108,10 +109,10 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         return if (id == R.id.add_new_card) {
-//            activity?.supportFragmentManager
-//                ?.beginTransaction()
-//                ?.replace(R.id.fragment_container, CreateCardFragment.newInstance("", ""))
-//                ?.commit()
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.drawer_layout, CreateCardFragment.newInstance("", ""))
+                ?.commit()
             true
         } else super.onOptionsItemSelected(item)
     }
