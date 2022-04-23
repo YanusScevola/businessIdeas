@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply plugin: 'signing'
+
+def sonatypeUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : ""
+def sonatypePassword = project.hasProperty('sonatypePassword') ? sonatypePassword : ""
+
+android {
+  compileSdkVersion 31
+
+  defaultConfig {
+    minSdkVersion 8
+    consumerProguardFiles 'release-proguard.cfg'
+    versionCode 1
+    versionName version
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+}
+
+dependencies {
+  compileOnly 'com.squareup.picasso:picasso:2.5.2'
+  compileOnly 'com.android.support:support-annotations:25.3.1'
+}
+
+task androidJavadocs(type: Javadoc) {
+  source = android.sourceSets.main.java.source
+}
+
+task androidJavadocsJar(type: Jar) {
+  classifier = 'javadoc'
+  //basename = artifact_id
+  from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+  classifier = 'sources'
+  //basename = artifact_id
+  from android.sourceSets.main.java.source
+}
+
+artifacts {
+  archives androidSourcesJar
+  archives androidJavadocsJar
+}
+
+signing {
+  required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+  sign configurations.archives
+}

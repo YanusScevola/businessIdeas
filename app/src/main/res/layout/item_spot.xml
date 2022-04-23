@@ -30,6 +30,8 @@
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true">
 
+
+
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/item_image"
             android:layout_width="match_parent"

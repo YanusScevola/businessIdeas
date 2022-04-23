@@ -1,9 +1,5 @@
 package com.example.myapplication.cardview.internal;
 
-import static com.example.myapplication.cardview.internal.Direction.Bottom;
-import static com.example.myapplication.cardview.internal.Direction.Left;
-import static com.example.myapplication.cardview.internal.Direction.Right;
-import static com.example.myapplication.cardview.internal.Direction.Top;
 
 import android.content.Context;
 import android.graphics.PointF;
