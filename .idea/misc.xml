@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/MeowBottomNavigation/src/main/res/layout/meow_navigation_cell.xml" value="0.1" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/card_view_shape.xml" value="0.173" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/circle_shape.xml" value="0.104" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/frame_edit_text.xml" value="0.173" />
@@ -55,7 +56,7 @@
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_register.xml" value="0.10008357709987463" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/home_fragment.xml" value="0.16" />
-        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_spot.xml" value="0.15780730897009967" />
+        <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/item_spot.xml" value="0.128" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/nav_header_navigate_drawer.xml" value="0.1" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/overlay.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/layout/play_screan_fragment.xml" value="0.10989583333333333" />

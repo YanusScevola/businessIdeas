@@ -18,6 +18,7 @@ import com.example.myapplication.cardview.internal.SpotDiffCallback
 import com.example.myapplication.cardview.internal.*
 import com.example.myapplication.model.Spot
 import com.example.myapplication.ui.core.createcard.CreateCardFragment
+import meow.bottomnavigation.MeowBottomNavigation
 
 
 class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickListener {
@@ -55,6 +56,8 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        setupNavigation()
+
+
 
         cardStackView = view.findViewById(R.id.card_stack_view)
         manager = CardStackLayoutManager(requireContext(), this)

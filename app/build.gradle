@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+
+
 android {
     compileSdk 31
 
@@ -14,7 +16,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
 
 
     buildTypes {
@@ -40,6 +41,8 @@ android {
         enabled = true
     }
 
+
+
 }
 
 
@@ -47,7 +50,10 @@ android {
 
 
 dependencies {
-
+    implementation files("libs/circleimageview.aar")
+    implementation files("libs/EasyFlipView-3.0.2.aar")
+    implementation files("libs/round-corner-progress-bar-2.1.2.aar")
+    implementation project(path: ':MeowBottomNavigation')
     def nav_version = "2.4.1"
 
     def lifecycle_version = "2.2.0"
@@ -92,17 +98,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    // CircleImageView
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    // RoundCornerProgressBar
-    implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
 
-    // EasyFlipView
-    implementation 'com.wajahatkarim:EasyFlipView:3.0.3'
 
     // AnimatedBottomBar
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
+
+    implementation 'com.ramotion.fluidslider:fluid-slider:0.3.1'
 
 
 }

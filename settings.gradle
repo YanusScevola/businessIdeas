@@ -16,3 +16,5 @@ rootProject.name = "My Application"
 include ':app'
 
 include ':roundedimageview'
+include ':circleimageview'
+include ':MeowBottomNavigation'

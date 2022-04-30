@@ -4,10 +4,7 @@
         android:id="@+id/tab_home"
         android:icon="@drawable/ic_baseline_comment_24"
         android:title="home" />
-    <item
-        android:id="@+id/tab_alarm"
-        android:icon="@drawable/alarm"
-        android:title="home" />
+
     <item
         android:id="@+id/tab_bread"
         android:icon="@drawable/alarm"

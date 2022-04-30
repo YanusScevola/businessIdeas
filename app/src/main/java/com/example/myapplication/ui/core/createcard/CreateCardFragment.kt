@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.core.createcard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
 import com.example.myapplication.R
+import com.ramotion.fluidslider.FluidSlider
 
 
 class CreateCardFragment : Fragment() {
