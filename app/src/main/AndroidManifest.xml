@@ -13,6 +13,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".ui.core.NavigateDrawerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true"
             android:label="@string/title_activity_navigate_drawer"
             />

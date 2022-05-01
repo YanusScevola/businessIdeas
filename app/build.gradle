@@ -53,7 +53,8 @@ dependencies {
     implementation files("libs/circleimageview.aar")
     implementation files("libs/EasyFlipView-3.0.2.aar")
     implementation files("libs/round-corner-progress-bar-2.1.2.aar")
-    implementation project(path: ':MeowBottomNavigation')
+    implementation files("libs/indicatorseekbar-2.1.2.aar")
+
     def nav_version = "2.4.1"
 
     def lifecycle_version = "2.2.0"

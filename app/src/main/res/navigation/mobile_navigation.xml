@@ -10,42 +10,25 @@
         android:name="com.example.myapplication.ui.core.home.HomeFragment"
         android:label=""
         app:defaultNavHost="false"
-        tools:layout="@layout/home_fragment" >
-        <action
-            android:id="@+id/action_nav_home_to_nav_my_office"
-            app:destination="@id/nav_my_office" />
+        tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_home_to_detailCardFragment2"
             app:destination="@id/detailCardFragment"
             app:exitAnim="@anim/anim_zum_close"
             app:popEnterAnim="@anim/anim_zum_far" />
+        <action
+            android:id="@+id/action_nav_home_to_createCardFragment3"
+            app:destination="@id/createCardFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_about_business"
-        android:name="com.example.myapplication.ui.core.aboutbusiness.AboutBusinessFragment"
-        android:label=""
-        tools:layout="@layout/fragment_about_business" />
-
-    <fragment
-        android:id="@+id/nav_community"
-        android:name="com.example.myapplication.ui.core.community.CommunityFragment"
-        android:label=""
-        tools:layout="@layout/fragment_community" />
-    <fragment
-        android:id="@+id/nav_donat"
-        android:name="com.example.myapplication.ui.core.donat.DonatFragment"
-        android:label=""
-        tools:layout="@layout/fragment_donat" />
-    <fragment
-        android:id="@+id/nav_my_office"
-        android:name="com.example.myapplication.ui.core.myofice.MyOfficeFragment"
-        android:label=""
-        tools:layout="@layout/fragment_my_office" />
-    <fragment
         android:id="@+id/detailCardFragment"
-        android:name="com.example.myapplication.ui.core.detailcard.DetailCardFragment"
+        android:name="com.example.myapplication.ui.core.cardDetail.DetailCardFragment"
         tools:layout="@layout/fragment_detali_card" />
+    <fragment
+        android:id="@+id/createCardFragment"
+        android:name="com.example.myapplication.ui.core.cardCreate.CreateCardFragment"
+        tools:layout="@layout/fragment_create_card" />
 
 
 </navigation>

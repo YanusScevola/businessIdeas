@@ -1,107 +1,488 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.core.createcard.CreateCardFragment">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+    tools:context=".ui.core.cardCreate.CreateCardFragment">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="380dp"
-        android:layout_height="650dp"
-        card_view:cardCornerRadius="22dp"
+        android:layout_width="340dp"
+        android:layout_height="530dp"
         android:backgroundTintMode="add"
-        card_view:cardElevation="22dp"
-        card_view:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0.18">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.18"
+        app:cardCornerRadius="22dp"
+        card_view:cardElevation="22dp"
+        card_view:cardUseCompatPadding="true">
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:background="#D7D8D8"
-            android:backgroundTint="#615F5F"
-            app:cardCornerRadius="22dp">
+            android:layout_gravity="bottom"
+            android:background="@drawable/black">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="70dp"
+                android:src="@drawable/add_image_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_card_info"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="@drawable/gradation_black">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_business_info"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/appCompatImageView"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_avatar_end_name"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:background="@color/white"
-                    android:src="@drawable/gradation_black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4dp"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/container_business_cost"
+                    tools:layout_editor_absoluteX="16dp">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="#615F5F"
-                    app:layout_constraintBottom_toTopOf="@+id/textView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:backgroundTint="@color/black"
+                        android:src="@drawable/lable"
+                        android:layout_marginBottom="16dp"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-                <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
-                    android:id="@+id/textView"
-                    android:layout_width="280dp"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="8dp"
-                    app:rcBackgroundColor="#0A000000"
-                    app:rcMax="50000"
-                    app:rcProgress="10000"
-                    app:rcProgressColor="#0A85F1"
-                    app:rcRadius="80dp"
-                    android:animateLayoutChanges="true"
-                    app:rcReverse="false"
-                    app:rcSecondaryProgress="50000"
-                    app:rcSecondaryProgressColor="#40009688"
-                    app:rcTextPositionPriority="inside"
-                    app:rcTextProgress="10.000$"
-                    app:rcTextProgressColor="@android:color/white"
-                    app:rcTextProgressSize="15sp"
-                    app:rcTextInsideGravity="start"
-                    app:rcTextProgressMargin="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="20"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/profile_image"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/item_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoSizeMaxTextSize="100sp"
+                            android:autoSizeMinTextSize="12sp"
+                            android:autoSizeStepGranularity="2sp"
+                            android:autoSizeTextType="uniform"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:hint="Название бизнеса"
+                            android:maxLength="20"
+                            android:paddingHorizontal="6dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_business_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    app:layout_constraintBottom_toTopOf="@+id/container_payback_period">
+
+                    <TextView
+                        android:id="@+id/tv_business_cost_zero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:gravity="start"
+                        android:text="0$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar2"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/item_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Сумма инвестиций"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_business_cost_sum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="end"
+                        android:text="50.000$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <com.warkiz.widget.IndicatorSeekBar
+                        android:id="@+id/textRoundCornerProgressBar2"
+                        android:layout_width="280dp"
+                        android:layout_height="18dp"
+                        app:isb_indicator_color="@color/color_gray"
+                        app:isb_indicator_text_color="@color/white"
+                        app:isb_indicator_text_size="18sp"
+                        app:isb_tick_texts_array="@array/system"
+                        app:isb_show_thumb_text="false"
+                        app:isb_max="50"
+                        app:isb_min="0.0"
+                        app:isb_only_thumb_draggable="false"
+                        app:isb_progress="0"
+                        app:isb_seek_smoothly="false"
+                        app:isb_show_indicator="rounded_rectangle"
+                        app:isb_show_tick_marks_type="divider"
+                        app:isb_show_tick_texts="true"
+                        app:isb_thumb_color="#029C09"
+                        app:isb_thumb_size="18dp"
+                        app:isb_tick_marks_color="#029C09"
+                        app:isb_tick_texts_typeface="serif"
+                        app:isb_tick_marks_size="13dp"
+                        app:isb_tick_texts_color="@color/white"
+                        app:isb_tick_texts_size="10sp"
+                        app:isb_ticks_count="0"
+                        app:isb_track_background_color="#40009688"
+                        app:isb_track_background_size="16dp"
+                        app:isb_track_progress_color="#21B629"
+                        app:isb_track_progress_size="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_payback_period"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="6dp"
+                    app:layout_constraintBottom_toTopOf="@+id/container_difficulty">
+
+                    <TextView
+                        android:id="@+id/tv_payback_period_zero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:gravity="start"
+                        android:text="0$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar4"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_payback_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Доход в год"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar4"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_payback_period_sum"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_payback_period_sum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="end"
+                        android:text="50.000$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar4"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <com.warkiz.widget.IndicatorSeekBar
+                        android:id="@+id/textRoundCornerProgressBar4"
+                        android:layout_width="280dp"
+                        android:layout_height="18dp"
+                        app:isb_indicator_color="@color/color_gray"
+                        app:isb_indicator_text_color="@color/white"
+                        app:isb_indicator_text_size="18sp"
+                        app:isb_max="50"
+                        app:isb_min="0.0"
+                        app:isb_only_thumb_draggable="false"
+                        app:isb_progress="0"
+                        app:isb_seek_smoothly="true"
+                        app:isb_show_indicator="rounded_rectangle"
+                        app:isb_show_tick_marks_type="divider"
+                        app:isb_show_tick_texts="false"
+                        app:isb_thumb_color="#007BDD"
+                        app:isb_thumb_size="18dp"
+                        app:isb_tick_marks_color="#007BDD"
+                        app:isb_tick_marks_size="13dp"
+                        app:isb_tick_texts_color="@color/color_blue"
+                        app:isb_tick_texts_size="15sp"
+                        app:isb_ticks_count="0"
+                        app:isb_track_background_color="#40009688"
+                        app:isb_track_background_size="16dp"
+                        app:isb_track_progress_color="@color/color_blue"
+                        app:isb_track_progress_size="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_difficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_difficulty_well"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:gravity="start"
+                        android:text="👍"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar3"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_difficulty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Уровень сложности"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_donat_difficulty_bad"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="end"
+                        android:text="😭"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar3"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+
+                    <com.warkiz.widget.IndicatorSeekBar
+                        android:id="@+id/textRoundCornerProgressBar3"
+                        android:layout_width="280dp"
+                        android:layout_height="18dp"
+                        app:isb_indicator_color="@color/color_gray"
+                        app:isb_indicator_text_color="@color/white"
+                        app:isb_indicator_text_size="18sp"
+                        app:isb_max="3"
+                        app:isb_min="1.0"
+                        app:isb_only_thumb_draggable="false"
+                        app:isb_progress="2"
+                        app:isb_seek_smoothly="true"
+                        app:isb_show_indicator="rounded_rectangle"
+                        app:isb_show_tick_marks_type="divider"
+                        app:isb_show_tick_texts="false"
+                        app:isb_thumb_color="#DF0400"
+                        app:isb_thumb_size="18dp"
+                        app:isb_tick_marks_color="#DF0400"
+                        app:isb_tick_marks_size="13dp"
+                        app:isb_tick_texts_color="@color/color_blue"
+                        app:isb_tick_texts_size="15sp"
+                        app:isb_ticks_count="3"
+                        app:isb_track_background_color="#40009688"
+                        app:isb_track_background_size="16dp"
+                        app:isb_track_progress_color="#EF5350"
+                        app:isb_track_progress_size="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.cardview.widget.CardView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_like_end_dislike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:paddingTop="16dp"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:src="@drawable/ic_baseline_thumb_down_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/view"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:src="@drawable/ic_baseline_thumb_up_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/view"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/tv_dislike"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:paddingTop="16dp"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_comment_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_comment"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="4dp"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

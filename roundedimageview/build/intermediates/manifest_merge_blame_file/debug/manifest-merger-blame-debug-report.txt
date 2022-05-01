@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="8"
-6-->C:\Users\vasea\AndroidStudioProjects\MyApplication\roundedimageview\src\main\AndroidManifest.xml
+6-->C:\Users\vasea\StudioProjects\businessIdeas\roundedimageview\src\main\AndroidManifest.xml
 7        android:targetSdkVersion="8" />
-7-->C:\Users\vasea\AndroidStudioProjects\MyApplication\roundedimageview\src\main\AndroidManifest.xml
+7-->C:\Users\vasea\StudioProjects\businessIdeas\roundedimageview\src\main\AndroidManifest.xml
 8
 9</manifest>

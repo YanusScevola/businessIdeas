@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.core.cardrating
+package com.example.myapplication.ui.core.cardsLiked
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication.R
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-class CardRatingFragment : Fragment() {
+class LikedCardsListFragment : Fragment() {
+
+    private val ARG_PARAM1 = "param1"
+    private val ARG_PARAM2 = "param2"
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -22,18 +24,15 @@ class CardRatingFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_rating_list, container, false)
+    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
+        return inflater.inflate(R.layout.fragment_liked_cards_list, container, false)
     }
 
     companion object {
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            CardRatingFragment().apply {
+            LikedCardsListFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
