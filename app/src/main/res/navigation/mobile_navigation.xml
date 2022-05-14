@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.myapplication.ui.core.home.HomeFragment"
+        android:name="com.example.myapplication.screens.core.home.HomeFragment"
         android:label=""
         app:defaultNavHost="false"
         tools:layout="@layout/fragment_home" >
@@ -23,21 +23,21 @@
 
     <fragment
         android:id="@+id/detailCardFragment"
-        android:name="com.example.myapplication.ui.core.cardDetail.DetailCardFragment"
+        android:name="com.example.myapplication.screens.core.cardDetail.DetailCardFragment"
         tools:layout="@layout/fragment_detali_card" />
 
     <fragment
         android:id="@+id/createCardFragment"
-        android:name="com.example.myapplication.ui.core.cardCreate.CreateCardFragment"
+        android:name="com.example.myapplication.screens.core.cardCreate.CreateCardFragment"
         tools:layout="@layout/fragment_create_card" />
     <fragment
         android:id="@+id/nav_about_business"
-        android:name="com.example.myapplication.ui.core.aboutbusiness.AboutBusinessFragment"
+        android:name="com.example.myapplication.screens.core.aboutbusiness.AboutBusinessFragment"
         android:label="fragment_about_business"
         tools:layout="@layout/fragment_about_business" />
     <fragment
         android:id="@+id/communityFragment"
-        android:name="com.example.myapplication.ui.core.community.CommunityFragment"
+        android:name="com.example.myapplication.screens.core.community.CommunityFragment"
         android:label="fragment_community"
         tools:layout="@layout/fragment_community" />
 
