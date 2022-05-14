@@ -41,6 +41,7 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
@@ -54,7 +55,6 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        setupNavigation()
-
 
 
         cardStackView = view.findViewById(R.id.card_stack_view)
@@ -109,10 +109,18 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
+        item.isVisible = false
         return if (id == R.id.add_new_card) {
-           findNavController().navigate(R.id.action_nav_home_to_createCardFragment3)
+            findNavController().navigate(R.id.action_nav_home_to_createCardFragment)
             true
         } else super.onOptionsItemSelected(item)
+    }
+
+    override fun onClick(flipSide: String) {
+        if (flipSide == "BACK_SIDE") {
+            findNavController().navigate(R.id.action_nav_home_to_detailCardFragment)
+
+        }
     }
 
 
@@ -326,11 +334,8 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
             }
     }
 
-    override fun onClick(flipSide: String) {
-        if (flipSide == "BACK_SIDE") {
-            findNavController().navigate(R.id.action_nav_home_to_detailCardFragment2)
 
-        }
 
-    }
+
+
 }

@@ -9,15 +9,16 @@
     tools:context=".ui.core.cardCreate.CreateCardFragment">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="340dp"
-        android:layout_height="530dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
         android:backgroundTintMode="add"
+        app:cardCornerRadius="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.18"
-        app:cardCornerRadius="22dp"
         card_view:cardElevation="22dp"
         card_view:cardUseCompatPadding="true">
 
@@ -25,17 +26,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
-            android:background="@drawable/black">
+            android:background="@drawable/card_background">
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="80dp"
+                android:contentDescription="TODO"
                 android:src="@drawable/add_image_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="TODO" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -45,8 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_gravity="bottom"
-            android:orientation="vertical"
-            android:background="@drawable/gradation_black">
+            android:background="@drawable/gradation_black"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/container_business_info"
@@ -61,8 +62,8 @@
                     android:id="@+id/container_avatar_end_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="4dp"
                     android:paddingHorizontal="16dp"
+                    android:paddingBottom="4dp"
                     app:layout_constraintBottom_toTopOf="@+id/container_business_cost"
                     tools:layout_editor_absoluteX="16dp">
 
@@ -70,9 +71,9 @@
                         android:id="@+id/profile_image"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginBottom="16dp"
                         android:backgroundTint="@color/black"
                         android:src="@drawable/lable"
-                        android:layout_marginBottom="16dp"
                         app:civ_border_color="#FF000000"
                         app:civ_border_width="2dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,6 +100,10 @@
                             android:focusable="true"
                             android:focusableInTouchMode="true"
                             android:hint="Название бизнеса"
+                            android:shadowColor="#000000"
+                            android:shadowDx="1.5"
+                            android:shadowDy="1.3"
+                            android:shadowRadius="1.6"
                             android:maxLength="20"
                             android:paddingHorizontal="6dp"
                             android:textColor="@android:color/white"
@@ -121,14 +126,14 @@
                         android:id="@+id/tv_business_cost_zero"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="16dp"
+                        android:layout_weight="1"
                         android:gravity="start"
+                        android:maxLines="1"
                         android:text="0$"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar2"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -138,11 +143,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:maxLines="1"
                         android:text="Сумма инвестиций"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -151,14 +156,14 @@
                         android:id="@+id/tv_business_cost_sum"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
                         android:gravity="end"
+                        android:maxLines="1"
                         android:text="50.000$"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -171,23 +176,23 @@
                         app:isb_indicator_color="@color/color_gray"
                         app:isb_indicator_text_color="@color/white"
                         app:isb_indicator_text_size="18sp"
-                        app:isb_tick_texts_array="@array/system"
-                        app:isb_show_thumb_text="false"
                         app:isb_max="50"
                         app:isb_min="0.0"
                         app:isb_only_thumb_draggable="false"
                         app:isb_progress="0"
                         app:isb_seek_smoothly="false"
                         app:isb_show_indicator="rounded_rectangle"
+                        app:isb_show_thumb_text="false"
                         app:isb_show_tick_marks_type="divider"
                         app:isb_show_tick_texts="true"
                         app:isb_thumb_color="#029C09"
                         app:isb_thumb_size="18dp"
                         app:isb_tick_marks_color="#029C09"
-                        app:isb_tick_texts_typeface="serif"
                         app:isb_tick_marks_size="13dp"
+                        app:isb_tick_texts_array="@array/system"
                         app:isb_tick_texts_color="@color/white"
                         app:isb_tick_texts_size="10sp"
+                        app:isb_tick_texts_typeface="serif"
                         app:isb_ticks_count="0"
                         app:isb_track_background_color="#40009688"
                         app:isb_track_background_size="16dp"
@@ -211,14 +216,14 @@
                         android:id="@+id/tv_payback_period_zero"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="16dp"
+                        android:layout_weight="1"
                         android:gravity="start"
+                        android:maxLines="1"
                         android:text="0$"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar4"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -228,11 +233,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:maxLines="1"
                         android:text="Доход в год"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar4"
                         app:layout_constraintEnd_toEndOf="@+id/tv_payback_period_sum"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -241,14 +246,14 @@
                         android:id="@+id/tv_payback_period_sum"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
                         android:gravity="end"
+                        android:maxLines="1"
                         android:text="50.000$"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar4"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -295,14 +300,14 @@
                         android:id="@+id/tv_difficulty_well"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="16dp"
+                        android:layout_weight="1"
                         android:gravity="start"
+                        android:maxLines="1"
                         android:text="👍"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar3"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -312,11 +317,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:maxLines="1"
                         android:text="Уровень сложности"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar3"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -325,14 +330,14 @@
                         android:id="@+id/tv_donat_difficulty_bad"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
                         android:gravity="end"
+                        android:maxLines="1"
                         android:text="😭"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:maxLines="1"
                         app:layout_constraintBottom_toTopOf="@+id/textRoundCornerProgressBar3"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -450,8 +455,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">

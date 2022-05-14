@@ -2,16 +2,17 @@ package com.example.myapplication.ui.core
 
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityNavigateDrawerBinding
+import com.google.android.material.navigation.NavigationView
 
 class NavigateDrawerActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -27,6 +28,9 @@ class NavigateDrawerActivity : AppCompatActivity() {
         val navView: NavigationView? = binding?.navView
         val navController = findNavController(R.id.nav_fragment_navigate_drawer)
 
+
+
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
@@ -36,8 +40,10 @@ class NavigateDrawerActivity : AppCompatActivity() {
                 R.id.nav_donat
             ), drawerLayout
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+
         navView?.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -48,15 +54,36 @@ class NavigateDrawerActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_fragment_navigate_drawer)
         navController.navigateUp(appBarConfiguration)
-        return true
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+
+
     override fun onBackPressed() {
-        super.onBackPressed()
+        val fragmentManager: FragmentManager = supportFragmentManager
+        if (fragmentManager.backStackEntryCount > 1) {
+            fragmentManager.popBackStackImmediate()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         binding = null
     }
+
+    fun showUpButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun hideUpButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
+
+
 }
