@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.core.home
 
+import android.app.Notification.EXTRA_TEXT
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -14,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
-import com.example.myapplication.cardview.internal.SpotDiffCallback
 import com.example.myapplication.cardview.internal.*
 import com.example.myapplication.model.Spot
 
@@ -22,12 +22,11 @@ import com.example.myapplication.model.Spot
 class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickListener {
 
     private val model: HomeViewModel by activityViewModels()
-
     private val drawerLayout by lazy { view?.findViewById<DrawerLayout>(R.id.drawer_layout) }
-
-    //    private val cardStackView by lazy { view?.findViewById<CardStackView>(R.id.card_stack_view) }
+//    private val cardStackView by lazy { view?.findViewById<CardStackView>(R.id.card_stack_view) }
 //    private val manager by lazy { CardStackLayoutManager(requireContext(), this) }
 //    private val adapter by lazy { CardStackAdapter(createSpots()) }
+
     private var adapter: CardStackAdapter? = null
     private var cardStackView: CardStackView? = null
     private var manager: CardStackLayoutManager? = null
@@ -71,6 +70,13 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
 //
 //        });
     }
+    fun createFor(text: String?): HomeFragment {
+        val fragment = HomeFragment()
+        val args = Bundle()
+        args.putString(EXTRA_TEXT, text)
+        fragment.setArguments(args)
+        return fragment
+    }
 
     override fun onCardDragging(direction: Direction, ratio: Float) {
         Log.d("CardStackView", "onCardDragging: d = ${direction.name}, r = $ratio")
@@ -111,14 +117,14 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
         val id = item.itemId
         item.isVisible = false
         return if (id == R.id.add_new_card) {
-            findNavController().navigate(R.id.action_nav_home_to_createCardFragment)
+//            findNavController().navigate(R.id.action_nav_home_to_createCardFragment)
             true
         } else super.onOptionsItemSelected(item)
     }
 
     override fun onClick(flipSide: String) {
         if (flipSide == "BACK_SIDE") {
-            findNavController().navigate(R.id.action_nav_home_to_detailCardFragment)
+//            findNavController().navigate(R.id.action_nav_home_to_detailCardFragment)
 
         }
     }

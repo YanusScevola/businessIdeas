@@ -15,7 +15,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:paddingStart="24dp"
-        android:text="account_balance"
+        android:text="@string/account_balance"
         android:textSize="12sp" />
 
     <LinearLayout
@@ -30,12 +30,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="balance_currency" />
+            android:text="@string/balance_currency" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="balance_amount"
+            android:text="@string/balance_amount"
             android:textSize="34sp" />
 
     </LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_green</item>
+        <item name="colorPrimaryDark">#0E4FCD</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ToolAppTheme" parent="AppTheme">
+        <item name="android:textColorSecondary">#51745E</item>
+
+    </style>
+
+</resources>
