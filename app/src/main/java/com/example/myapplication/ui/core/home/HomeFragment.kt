@@ -8,6 +8,7 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -47,7 +48,6 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,7 +73,7 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
         val fragment = HomeFragment()
         val args = Bundle()
         args.putString(EXTRA_TEXT, text)
-        fragment.setArguments(args)
+        fragment.arguments = args
         return fragment
     }
 

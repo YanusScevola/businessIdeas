@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.125" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/card_view_shape.xml" value="0.173" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/circle_shape.xml" value="0.104" />
         <entry key="..\:/Users/vasea/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/frame_edit_text.xml" value="0.173" />
@@ -88,6 +89,10 @@
         <entry key="..\:/Users/vasea/StudioProjects/businessIdeas/app/src/main/res/menu/activity_navigate_drawer_drawer.xml" value="0.13385416666666666" />
         <entry key="..\:/Users/vasea/StudioProjects/businessIdeas/app/src/main/res/menu/navigate_drawer.xml" value="0.1" />
         <entry key="..\:/Users/vasea/StudioProjects/businessIdeas/app/src/main/res/menu/navigation_toolbar.xml" value="0.1796875" />
+        <entry key="app/src/main/res/drawable/bottom_navigation_background.xml" value="0.1405" />
+        <entry key="app/src/main/res/drawable/test.xml" value="0.174" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.13229166666666667" />
+        <entry key="app/src/main/res/menu/tabs.xml" value="0.13229166666666667" />
       </map>
     </option>
   </component>
