@@ -3,12 +3,16 @@ package com.example.myapplication.ui.core
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +24,6 @@ import com.example.myapplication.ui.core.home.HomeFragment
 
 
 class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelectedListener {
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private var binding: ActivityNavigateDrawerBinding? = null
     private var slidingRootNav: SlidingRootNav? = null
 
@@ -59,34 +62,28 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
 
         adapter.setListener(this)
 
-        val list = findViewById<RecyclerView>(R.id.list)
-        list.isNestedScrollingEnabled = false
-        list.layoutManager = LinearLayoutManager(this)
-        list.adapter = adapter
+        val recyclerviewDrawer = findViewById<RecyclerView>(R.id.drawer_recyclerview)
+        recyclerviewDrawer.isNestedScrollingEnabled = false
+        recyclerviewDrawer.layoutManager = LinearLayoutManager(this)
+        recyclerviewDrawer.adapter = adapter
 
         adapter.setSelected(POS_DASHBOARD)
 
     }
-
 
     override fun onItemSelected(position: Int) {
         if (position == POS_LOGOUT) {
             finish()
         }
         slidingRootNav!!.closeMenu()
-        val selectedScreen: HomeFragment = HomeFragment().createFor(getItemsTitleForDrawerMenu(position))
-        showFragment(selectedScreen)
+//        val selectedScreen: HomeFragment = HomeFragment().newInstance(getItemsTitleForDrawerMenu(position))
+//        startFragment(selectedScreen)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.navigate_drawer, menu)
         return true
     }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return super.onSupportNavigateUp()
-    }
-
 
     override fun onBackPressed() {
         val fragmentManager: FragmentManager = supportFragmentManager
@@ -102,15 +99,18 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
         binding = null
     }
 
-    private fun showFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .addToBackStack("")
-            .replace(R.id.container, fragment)
-            .commit()
+    private fun startFragment(fragment: Fragment) {
+//        supportFragmentManager.beginTransaction()
+//            .addToBackStack("")
+//            .replace(R.id.nav_host_fragment_first, fragment)
+//            .commit()
     }
 
     private fun createItemFor(position: Int): DrawerItem<*> {
-        return SimpleItem(getItemsIconForDrawerMenu(position), getItemsTitleForDrawerMenu(position))
+        return SimpleItem(
+            getItemsIconForDrawerMenu(position),
+            getItemsTitleForDrawerMenu(position)
+        )
             .withIconTint(color(R.color.textColorSecondary))
             .withTextTint(color(R.color.textColorPrimary))
             .withSelectedIconTint(color(R.color.colorAccent))
@@ -118,7 +118,14 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
     }
 
     private fun getItemsTitleForDrawerMenu(position: Int): String {
-        return arrayOf("Dashboard", "My Account", "My Account", "My Account", "My Account", "Log Out")[position]
+        return arrayOf(
+            "Dashboard",
+            "My Account",
+            "My Account",
+            "My Account",
+            "My Account",
+            "Log Out"
+        )[position]
     }
 
     private fun getItemsIconForDrawerMenu(position: Int): Drawable? {

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dd"
+    app:startDestination="@id/homeFragment">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.myapplication.ui.core.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_createCardFragment"
+            app:destination="@id/createCardFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createCardFragment"
+        android:name="com.example.myapplication.ui.core.cardCreate.CreateCardFragment"
+        android:label="fragment_create_card"
+        tools:layout="@layout/fragment_create_card" >
+        <action
+            android:id="@+id/action_createCardFragment_to_detailCardFragment"
+            app:destination="@id/detailCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCardFragment"
+        android:name="com.example.myapplication.ui.core.cardDetail.DetailCardFragment"
+        android:label="fragment_detali_card"
+        tools:layout="@layout/fragment_detali_card" />
+</navigation>

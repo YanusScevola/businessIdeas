@@ -91,8 +91,14 @@
         <entry key="..\:/Users/vasea/StudioProjects/businessIdeas/app/src/main/res/menu/navigation_toolbar.xml" value="0.1796875" />
         <entry key="app/src/main/res/drawable/bottom_navigation_background.xml" value="0.1405" />
         <entry key="app/src/main/res/drawable/test.xml" value="0.174" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.13229166666666667" />
+        <entry key="app/src/main/res/layout/activity_navigate_drawer.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_create_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.13229166666666667" />
         <entry key="app/src/main/res/layout/item_spot.xml" value="0.13229166666666667" />
+        <entry key="app/src/main/res/layout/left_drawer_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/navigate_drawer.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/navigation_toolbar.xml" value="0.1" />
         <entry key="app/src/main/res/menu/tabs.xml" value="0.13229166666666667" />
       </map>
     </option>

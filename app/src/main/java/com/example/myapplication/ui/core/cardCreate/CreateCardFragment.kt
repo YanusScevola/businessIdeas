@@ -36,6 +36,9 @@ class CreateCardFragment : Fragment() {
 
 
     companion object {
+        const val FRAGMENT_NAME = "CreateCardFragment"
+        const val FRAGMENT_TAG = "CreateCardFragment"
+        const val FRAGMENT_ID = "CreateCardFragment"
         private const val ARG_PARAM1 = "param1"
         private const val ARG_PARAM2 = "param2"
 

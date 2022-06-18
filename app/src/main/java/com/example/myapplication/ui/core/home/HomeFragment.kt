@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
@@ -52,8 +53,6 @@ class HomeFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        setupNavigation()
-
 
         cardStackView = view.findViewById(R.id.card_stack_view)
         manager = CardStackLayoutManager(
@@ -72,7 +71,7 @@ class HomeFragment : Fragment(),
 //
 //        });
     }
-    fun createFor(text: String?): HomeFragment {
+    fun newInstance(text: String?): HomeFragment {
         val fragment = HomeFragment()
         val args = Bundle()
         args.putString(EXTRA_TEXT, text)
@@ -119,14 +118,14 @@ class HomeFragment : Fragment(),
         val id = item.itemId
         item.isVisible = false
         return if (id == R.id.add_new_card) {
-//            findNavController().navigate(R.id.action_nav_home_to_createCardFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_createCardFragment)
             true
         } else super.onOptionsItemSelected(item)
     }
 
     override fun onClick(flipSide: String) {
         if (flipSide == "BACK_SIDE") {
-//            findNavController().navigate(R.id.action_nav_home_to_detailCardFragment)
+            findNavController().navigate(R.id.action_createCardFragment_to_detailCardFragment)
 
         }
     }
