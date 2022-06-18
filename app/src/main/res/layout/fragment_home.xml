@@ -96,7 +96,7 @@
 
             </LinearLayout>
 
-            <com.example.myapplication.cardview.internal.CardStackView
+            <com.example.myapplication.libraries.cardview.CardStackView
                 android:id="@+id/card_stack_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

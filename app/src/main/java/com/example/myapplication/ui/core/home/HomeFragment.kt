@@ -8,18 +8,18 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
-import com.example.myapplication.cardview.internal.*
+import com.example.myapplication.libraries.cardview.*
 import com.example.myapplication.model.Spot
 
 
-class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickListener {
+class HomeFragment : Fragment(),
+    CardStackListener, CardStackAdapter.OnClickListener {
 
     private val model: HomeViewModel by activityViewModels()
     private val drawerLayout by lazy { view?.findViewById<DrawerLayout>(R.id.drawer_layout) }
@@ -56,7 +56,10 @@ class HomeFragment : Fragment(), CardStackListener, CardStackAdapter.OnClickList
 
 
         cardStackView = view.findViewById(R.id.card_stack_view)
-        manager = CardStackLayoutManager(requireContext(), this)
+        manager = CardStackLayoutManager(
+            requireContext(),
+            this
+        )
         adapter = CardStackAdapter(createSpots(), this)
         setupCardStackView()
         setupButton()

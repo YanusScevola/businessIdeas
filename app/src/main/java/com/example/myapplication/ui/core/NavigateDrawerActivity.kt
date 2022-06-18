@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityNavigateDrawerBinding
-import com.example.myapplication.drawer.SlidingRootNav
-import com.example.myapplication.drawer.SlidingRootNavBuilder
+import com.example.myapplication.libraries.drawerview.SlidingRootNav
+import com.example.myapplication.libraries.drawerview.SlidingRootNavBuilder
 import com.example.myapplication.ui.core.home.HomeFragment
 
 

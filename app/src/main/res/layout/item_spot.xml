@@ -31,7 +31,7 @@
         app:cardUseCompatPadding="true">
 
 
-        <com.makeramen.roundedimageview.RoundedImageView
+        <com.example.myapplication.libraries.roundedimageview.RoundedImageView
             android:id="@+id/item_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
