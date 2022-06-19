@@ -37,7 +37,6 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
         binding = ActivityNavigateDrawerBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         setSupportActionBar(binding?.toolbarContainer?.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
 
         title = ""

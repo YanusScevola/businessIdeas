@@ -61,6 +61,7 @@ class HomeFragment : Fragment(),
         adapter = CardStackAdapter(createSpots(), this)
         setupCardStackView()
         setupButton()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
 
