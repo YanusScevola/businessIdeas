@@ -1,4 +1,4 @@
-package com.example.myapplication.presentation.core;
+package com.example.myapplication.libraries.drawerview;
 
 import android.util.SparseArray;
 import android.view.View;

@@ -17,8 +17,7 @@ class DetailCardFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        var s = requireActivity() as (AppCompatActivity)
-//        s.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         arguments?.let {
 //            param1 = it.getString(ARG_PARAM1)
 //            param2 = it.getString(ARG_PARAM2)
@@ -29,7 +28,6 @@ class DetailCardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detali_card, container, false)
     }
 

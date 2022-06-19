@@ -10,6 +10,7 @@ import android.view.animation.LinearInterpolator
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.fadeIn
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
 import com.example.myapplication.libraries.cardview.*
 import com.example.myapplication.model.Spot
+import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 
 
 class HomeFragment : Fragment(),
@@ -37,10 +39,10 @@ class HomeFragment : Fragment(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true);
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
 
         }
     }
@@ -59,7 +61,9 @@ class HomeFragment : Fragment(),
         adapter = CardStackAdapter(createSpots(), this)
         setupCardStackView()
         setupButton()
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+
 
 
 //        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
@@ -112,18 +116,16 @@ class HomeFragment : Fragment(),
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        item.isVisible = false
-        return if (id == R.id.add_new_card) {
-
-            true
-        } else super.onOptionsItemSelected(item)
+    private fun startFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .addToBackStack(FRAGMENT_ID)
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 
     override fun onClick(flipSide: String) {
         if (flipSide == "BACK_SIDE") {
-
+            startFragment(DetailCardFragment())
         }
     }
 
@@ -325,6 +327,7 @@ class HomeFragment : Fragment(),
     }
 
     companion object {
+        const val FRAGMENT_ID = "HomeFragment"
         private const val ARG_PARAM1 = "param1"
         private const val ARG_PARAM2 = "param2"
 

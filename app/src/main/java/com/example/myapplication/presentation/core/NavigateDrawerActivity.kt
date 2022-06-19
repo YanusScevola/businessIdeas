@@ -2,7 +2,9 @@ package com.example.myapplication.presentation.core
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
@@ -13,16 +15,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityNavigateDrawerBinding
-import com.example.myapplication.libraries.drawerview.SlidingRootNav
-import com.example.myapplication.libraries.drawerview.SlidingRootNavBuilder
+import com.example.myapplication.libraries.drawerview.*
+import com.example.myapplication.libraries.drawerview.callback.DragListener
+import com.example.myapplication.libraries.drawerview.callback.DragStateListener
+import com.example.myapplication.presentation.core.cardCreate.CreateCardFragment
 import com.example.myapplication.presentation.core.home.HomeFragment
+import com.google.android.material.navigation.NavigationView
 
 
 class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelectedListener {
     private var binding: ActivityNavigateDrawerBinding? = null
     private var slidingRootNav: SlidingRootNav? = null
-
-
     private val POS_DASHBOARD = 0
     private val POS_ACCOUNT = 1
     private val POS_MESSAGES = 2
@@ -34,8 +37,8 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
         binding = ActivityNavigateDrawerBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         setSupportActionBar(binding?.toolbarContainer?.toolbar)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
 
         title = ""
 
@@ -46,6 +49,8 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
             .withSavedState(savedInstanceState)
             .withMenuLayout(R.layout.left_drawer_layout)
             .inject()
+
+
 
 
         val adapter = DrawerAdapter(
@@ -61,6 +66,7 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
 
         adapter.setListener(this)
 
+
         val drawerRecyclerviewMenuList = findViewById<RecyclerView>(R.id.drawer_recyclerview)
         drawerRecyclerviewMenuList.isNestedScrollingEnabled = false
         drawerRecyclerviewMenuList.layoutManager = LinearLayoutManager(this)
@@ -68,16 +74,16 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
 
         adapter.setSelected(POS_DASHBOARD)
 
-
     }
 
+    //Обробатываю выбор елемента из DrawerMenu
     override fun onItemSelected(position: Int) {
         if (position == POS_LOGOUT) {
             finish()
         }
         slidingRootNav!!.closeMenu()
         val selectedScreen: HomeFragment = HomeFragment().newInstance(getItemsTitleForDrawerMenu(position))
-        showFragment(selectedScreen)
+        startFragment(selectedScreen, HomeFragment.FRAGMENT_ID)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -85,12 +91,35 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val itemId = item.itemId
+        when (itemId) {
+            R.id.add_new_card -> {
+                startFragment(CreateCardFragment(), CreateCardFragment.FRAGMENT_ID)
+            }
+
+            R.id.action_settings -> {
+
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+
     override fun onSupportNavigateUp(): Boolean {
+
         return super.onSupportNavigateUp()
     }
 
 
     override fun onBackPressed() {
+        val fragment = supportFragmentManager.findFragmentByTag(CreateCardFragment.FRAGMENT_ID)
+//        if (fragment?.isVisible == true){
+//            slidingRootNav?.isMenuLocked = false
+//        }
+
+
         val fragmentManager: FragmentManager = supportFragmentManager
         if (fragmentManager.backStackEntryCount > 1) {
             fragmentManager.popBackStackImmediate()
@@ -104,10 +133,10 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
         binding = null
     }
 
-    private fun showFragment(fragment: Fragment) {
+    private fun startFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
-            .addToBackStack("")
-            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(tag)
+            .replace(R.id.fragment_container, fragment, tag)
             .commit()
     }
 
@@ -146,5 +175,39 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
     private fun color(@ColorRes res: Int): Int {
         return ContextCompat.getColor(this, res)
     }
+    var isDrawerOpened = false
+//    //Здесь побработаю действия после закрытия DrawerMenu
+//    override fun onDragStart() {
+//
+//
+//        val fragment = supportFragmentManager.findFragmentByTag(CreateCardFragment.FRAGMENT_ID)
+//        if (fragment?.isVisible == true) {
+//            if (isDrawerOpened == false){
+//                isDrawerOpened = true
+//                slidingRootNav?.closeMenu(true)
+//                slidingRootNav?.isMenuLocked = true
+//                supportFragmentManager.popBackStack()
+//                slidingRootNav?.isMenuLocked = false
+//
+//            }else{
+//                isDrawerOpened = false
+//            }
+//
+//        }else{
+//
+//        }
+//
+//
+//        Log.d("tag", "$isDrawerOpened")
+//        Log.d("tag", "isMenuOpened = ${slidingRootNav?.isMenuOpened}")
+//    }
+//
+//    //Здесь побработаю действия после закрытия DrawerMenu
+//    override fun onDragEnd(isMenuOpened: Boolean) {
+//
+//
+//        var isDrawerOpened = isMenuOpened
+////        Log.d("tag", " onDragEnd = $isDrawerOpened")
+//    }
 
 }

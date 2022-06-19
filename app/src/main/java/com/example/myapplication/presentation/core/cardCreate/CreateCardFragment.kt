@@ -15,8 +15,7 @@ class CreateCardFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        var s = requireActivity() as (AppCompatActivity)
-//        s.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
 
         arguments?.let {
@@ -24,6 +23,8 @@ class CreateCardFragment : Fragment() {
 //            param2 = it.getString(ARG_PARAM2)
         }
     }
+
+
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         return inflater.inflate(R.layout.fragment_create_card, container, false)
@@ -39,8 +40,6 @@ class CreateCardFragment : Fragment() {
 
 
     companion object {
-        const val FRAGMENT_NAME = "CreateCardFragment"
-        const val FRAGMENT_TAG = "CreateCardFragment"
         const val FRAGMENT_ID = "CreateCardFragment"
         private const val ARG_PARAM1 = "param1"
         private const val ARG_PARAM2 = "param2"
