@@ -32,6 +32,8 @@ class DetailCardFragment : Fragment() {
     }
 
     companion object {
+        const val FRAGMENT_ID = "DetailCardFragment"
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             DetailCardFragment().apply {

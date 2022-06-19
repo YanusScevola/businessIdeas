@@ -7,6 +7,7 @@ import android.view.*
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,7 @@ class HomeFragment : Fragment(),
     private val supportActionBar by lazy { (requireActivity() as (AppCompatActivity)).supportActionBar }
     private var param1: String? = null
     private var param2: String? = null
+    private var ivUpButton: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +57,9 @@ class HomeFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        ivUpButton = requireActivity().findViewById(R.id.iv_upButton)
         cardStackView = view.findViewById(R.id.card_stack_view)
+
         manager = CardStackLayoutManager( requireContext(), this )
         adapter = CardStackAdapter(createSpots(), this)
         setupCardStackView()
@@ -117,16 +120,19 @@ class HomeFragment : Fragment(),
 
     }
 
-    private fun startFragment(fragment: Fragment) {
+    private fun startFragment(fragment: Fragment, tag: String) {
+        if(FRAGMENT_ID != tag){
+            ivUpButton?.setImageResource(R.drawable.ic_arrow_back)
+        }
         parentFragmentManager.beginTransaction()
-            .addToBackStack(FRAGMENT_ID)
-            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(tag)
+            .replace(R.id.fragment_container, fragment, tag)
             .commit()
     }
 
     override fun onClick(flipSide: String) {
         if (flipSide == "BACK_SIDE") {
-            startFragment(DetailCardFragment())
+            startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID)
         }
     }
 

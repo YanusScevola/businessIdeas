@@ -14,7 +14,7 @@
         <activity
             android:name=".presentation.core.NavigateDrawerActivity"
             android:exported="true"
-            android:label="@string/title_activity_navigate_drawer"
+            android:label=""
             />
         <activity
             android:name=".presentation.first.MainActivity"
