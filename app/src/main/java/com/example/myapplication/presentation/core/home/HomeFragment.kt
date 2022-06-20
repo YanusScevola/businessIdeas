@@ -2,19 +2,15 @@ package com.example.myapplication.presentation.core.home
 
 import android.app.Notification.EXTRA_TEXT
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.*
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.DecelerateInterpolator
-import android.view.animation.LinearInterpolator
+import android.view.animation.*
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.animation.fadeIn
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
@@ -60,14 +56,12 @@ class HomeFragment : Fragment(),
         ivUpButton = requireActivity().findViewById(R.id.iv_upButton)
         cardStackView = view.findViewById(R.id.card_stack_view)
 
-        manager = CardStackLayoutManager( requireContext(), this )
+        manager = CardStackLayoutManager(requireContext(), this)
         adapter = CardStackAdapter(createSpots(), this)
         setupCardStackView()
         setupButton()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
-
 
 
 //        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
@@ -77,6 +71,7 @@ class HomeFragment : Fragment(),
 //
 //        });
     }
+
     fun newInstance(text: String?): HomeFragment {
         val fragment = HomeFragment()
         val args = Bundle()
@@ -121,19 +116,31 @@ class HomeFragment : Fragment(),
     }
 
     private fun startFragment(fragment: Fragment, tag: String) {
-        if(FRAGMENT_ID != tag){
+        if (FRAGMENT_ID != tag) {
             ivUpButton?.setImageResource(R.drawable.ic_arrow_back)
         }
-        parentFragmentManager.beginTransaction()
-            .addToBackStack(tag)
-            .replace(R.id.fragment_container, fragment, tag)
-            .commit()
+
+        Handler().postDelayed({
+            parentFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.anim_in, R.anim.anim_in)
+                .addToBackStack(tag)
+                .add(R.id.fragment_container, fragment, tag)
+                .commit()
+        }, 300)
+
+
+
     }
 
     override fun onClick(flipSide: String) {
         if (flipSide == "BACK_SIDE") {
             startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID)
+            val slideUp: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_zum_open)
+            cardStackView?.startAnimation(slideUp);
         }
+
+
+
     }
 
 
@@ -347,9 +354,6 @@ class HomeFragment : Fragment(),
                 }
             }
     }
-
-
-
 
 
 }

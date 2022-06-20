@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.myapplication.R
 
@@ -18,10 +19,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 //        Handler().postDelayed({
-//            if (!supportFragmentManager.isDestroyed) {
-////                navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-//            }
-//
+            if (!supportFragmentManager.isDestroyed) {
+                navController = Navigation.findNavController(this, R.id.nav_host_fragment_first)
+            }
+
 //        }, 2000)
 
 
