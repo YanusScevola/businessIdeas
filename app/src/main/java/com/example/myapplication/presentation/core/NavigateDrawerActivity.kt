@@ -156,7 +156,7 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
     private fun getItemsTitleForDrawerMenu(position: Int): String {
         return arrayOf(
             "Dashboard",
-            "My Awccount",
+            "My Account",
             "My Account",
             "My Account",
             "My Account",
