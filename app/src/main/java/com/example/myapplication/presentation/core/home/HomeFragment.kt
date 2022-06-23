@@ -22,7 +22,7 @@ import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
-class HomeFragment : Fragment(),
+class HomeFragment : BaseFragment(),
     CardStackListener, CardStackAdapter.OnClickListener {
 
     private val model: HomeViewModel by activityViewModels()
@@ -53,6 +53,7 @@ class HomeFragment : Fragment(),
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -121,8 +122,8 @@ class HomeFragment : Fragment(),
 
     override fun onFlip(flipView: EasyFlipView, flipSide: String) {
         if (flipSide == "BACK_SIDE") {
-            startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID)
             val slideUp: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_zum_open)
+            startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID)
             cardStackView?.startAnimation(slideUp)
         }
     }

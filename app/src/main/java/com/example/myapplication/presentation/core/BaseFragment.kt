@@ -13,10 +13,7 @@ import com.wajahatkarim3.easyflipview.EasyFlipView
 
 open class BaseFragment: Fragment() {
 
-    fun backButtOnClick(onClick: (View) -> Unit) {
 
-
-    }
 
 
 

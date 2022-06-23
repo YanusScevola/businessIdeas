@@ -11,11 +11,11 @@
             android:toYScale="1.4"
             android:pivotX="50%p"
             android:pivotY="10%p"
-            android:duration="800" />
+            android:duration="700" />
         <alpha
             android:fromAlpha="1.0"
             android:toAlpha="0.2"
-            android:duration="800"/>
+            android:duration="700"/>
     </translate>
 </set>
 

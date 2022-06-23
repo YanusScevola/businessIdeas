@@ -2,7 +2,6 @@ package com.example.myapplication.presentation.core
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -12,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.ColorRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -26,10 +24,9 @@ import com.example.myapplication.libraries.drawerview.callback.DragStateListener
 import com.example.myapplication.presentation.core.cardCreate.CreateCardFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.example.myapplication.presentation.core.home.HomeFragment
-import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
-class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelectedListener, DragStateListener {
+class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedListener, DragStateListener {
     private var binding: ActivityNavigateDrawerBinding? = null
     private var slidingRootNav: SlidingRootNav? = null
     private val POS_DASHBOARD = 0
@@ -38,45 +35,24 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
     private val POS_CART = 3
     private val POS_LOGOUT = 5
     private var ivUpButton: ImageView? = null
-    private var containerDrawerLayout: LinearLayout? = null
     private var fragmentManager: FragmentManager? = null
-    private var cardStackView: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNavigateDrawerBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         setSupportActionBar(binding?.toolbarContainer?.toolbar)
-        ivUpButton = findViewById(R.id.iv_upButton)
 
-        val inflater = LayoutInflater.from(this)
-        val layout: LinearLayout = inflater.inflate(R.layout.left_drawer_layout, null, false) as LinearLayout
-
-
-        containerDrawerLayout = layout.findViewById(R.id.container_drawer_layout)
+        ivUpButton = binding?.toolbarContainer?.ivUpButton
         fragmentManager = supportFragmentManager
-        containerDrawerLayout?.setBackgroundColor(ContextCompat.getColor(this, R.color.color_green))
 
 
-
+        initBaseActivity(ivUpButton as View)
         initDrawer(savedInstanceState)
-        handleUpButtonListener(ivUpButton)
 
     }
 
-    private fun handleUpButtonListener(ivUpButton: ImageView?) {
-        ivUpButton?.setUpButtonListener {
-            handleBackButtonClick(
-                listOf(
-                    HomeFragment.FRAGMENT_ID,
-                    CreateCardFragment.FRAGMENT_ID,
-                    DetailCardFragment.FRAGMENT_ID
-                )
-            )
-        }
-    }
-
-    override fun onBackPressed() {
+    override fun onBackButtonOnClick(upButton: ImageView?) {
         handleBackButtonClick(
             listOf(
                 HomeFragment.FRAGMENT_ID,
@@ -88,15 +64,15 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
     }
 
     override fun onDragStart() {
-        if (slidingRootNav?.isMenuClosed == true) {
+
+    }
+
+    override fun onDragEnd(isMenuOpened: Boolean) {
+        if (slidingRootNav?.isMenuClosed != true) {
             ivUpButton?.setImageResource(R.drawable.ic_arrow_back)
         } else {
             ivUpButton?.setImageResource(R.drawable.ic_menu)
         }
-    }
-
-    override fun onDragEnd(isMenuOpened: Boolean) {
-
     }
 
 
@@ -244,10 +220,10 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
                 val fr = fragmentManager?.findFragmentByTag(HomeFragment.FRAGMENT_ID) as HomeFragment
                 val easyFlipView = fr.getEasyFlipView()
 
-                Handler().postDelayed({
-                    easyFlipView?.setFlipTypeFromBack()
-                    easyFlipView?.flipTheView()
-                }, 400)
+
+                easyFlipView?.setFlipTypeFromBack()
+                easyFlipView?.flipTheView()
+
             }
 
             else -> {
@@ -262,12 +238,6 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
 
     }
 
-    private fun ImageView.setUpButtonListener(onClick: (View) -> Unit) {
-        this.setOnClickListener {
-            onClick(it)
-        }
-
-    }
 
 
 }
