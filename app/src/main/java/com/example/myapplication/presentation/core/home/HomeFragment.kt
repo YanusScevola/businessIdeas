@@ -77,10 +77,10 @@ class HomeFragment : BaseFragment(),
 //        });
     }
 
-    fun newInstance(text: String?): HomeFragment {
+    fun newInstance(): HomeFragment {
         val fragment = HomeFragment()
         val args = Bundle()
-        args.putString(EXTRA_TEXT, text)
+        args.putString(EXTRA_TEXT, "text")
         fragment.arguments = args
         return fragment
     }

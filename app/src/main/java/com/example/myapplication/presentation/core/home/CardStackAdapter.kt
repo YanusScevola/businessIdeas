@@ -31,18 +31,18 @@ class CardStackAdapter(
 //        holder.name.text = "${spot.id}. ${spot.name}"
         holder.name.text = "${spot.name}"
         holder.city.text = spot.city
+
         Glide.with(holder.image)
             .load(spot.url)
             .into(holder.image)
+
         holder.itemView.setOnClickListener { v ->
             Toast.makeText(v.context, spot.name, Toast.LENGTH_SHORT).show()
         }
 
-
         holder.easyFlipView.setOnFlipListener { flipView, newCurrentSide ->
             onClickListener.onFlip(flipView, newCurrentSide.toString())
             easyFlipView = flipView
-
         }
 
     }
