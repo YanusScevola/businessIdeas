@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.*
 import android.view.animation.*
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,7 +17,9 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
 import com.example.myapplication.libraries.cardview.*
 import com.example.myapplication.model.Spot
+import com.example.myapplication.presentation.core.BaseFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
+import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
 class HomeFragment : Fragment(),
@@ -44,6 +47,7 @@ class HomeFragment : Fragment(),
 
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -115,6 +119,16 @@ class HomeFragment : Fragment(),
 
     }
 
+    override fun onFlip(flipView: EasyFlipView, flipSide: String) {
+        if (flipSide == "BACK_SIDE") {
+            startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID)
+            val slideUp: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_zum_open)
+            cardStackView?.startAnimation(slideUp)
+        }
+    }
+
+
+
     private fun startFragment(fragment: Fragment, tag: String) {
         if (FRAGMENT_ID != tag) {
             ivUpButton?.setImageResource(R.drawable.ic_arrow_back)
@@ -128,20 +142,8 @@ class HomeFragment : Fragment(),
                 .commit()
         }, 300)
 
-
-
     }
 
-    override fun onClick(flipSide: String) {
-        if (flipSide == "BACK_SIDE") {
-            startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID)
-            val slideUp: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_zum_open)
-            cardStackView?.startAnimation(slideUp);
-        }
-
-
-
-    }
 
 
     private fun setupCardStackView() {
@@ -340,6 +342,11 @@ class HomeFragment : Fragment(),
 
     }
 
+    fun getEasyFlipView(): EasyFlipView? {
+        return adapter?.getFlipView()
+    }
+
+
     companion object {
         const val FRAGMENT_ID = "HomeFragment"
         private const val ARG_PARAM1 = "param1"
@@ -354,6 +361,8 @@ class HomeFragment : Fragment(),
                 }
             }
     }
+
+
 
 
 }

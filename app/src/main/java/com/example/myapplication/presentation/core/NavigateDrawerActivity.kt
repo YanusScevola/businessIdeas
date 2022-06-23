@@ -2,10 +2,13 @@ package com.example.myapplication.presentation.core
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.ColorRes
@@ -17,11 +20,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityNavigateDrawerBinding
+import com.example.myapplication.libraries.cardview.CardStackView
 import com.example.myapplication.libraries.drawerview.*
 import com.example.myapplication.libraries.drawerview.callback.DragStateListener
 import com.example.myapplication.presentation.core.cardCreate.CreateCardFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.example.myapplication.presentation.core.home.HomeFragment
+import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
 class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelectedListener, DragStateListener {
@@ -35,6 +40,7 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
     private var ivUpButton: ImageView? = null
     private var containerDrawerLayout: LinearLayout? = null
     private var fragmentManager: FragmentManager? = null
+    private var cardStackView: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +52,11 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
         val inflater = LayoutInflater.from(this)
         val layout: LinearLayout = inflater.inflate(R.layout.left_drawer_layout, null, false) as LinearLayout
 
+
         containerDrawerLayout = layout.findViewById(R.id.container_drawer_layout)
         fragmentManager = supportFragmentManager
         containerDrawerLayout?.setBackgroundColor(ContextCompat.getColor(this, R.color.color_green))
+
 
 
         initDrawer(savedInstanceState)
@@ -60,9 +68,10 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
         ivUpButton?.setUpButtonListener {
             handleBackButtonClick(
                 listOf(
+                    HomeFragment.FRAGMENT_ID,
                     CreateCardFragment.FRAGMENT_ID,
                     DetailCardFragment.FRAGMENT_ID
-                ), false
+                )
             )
         }
     }
@@ -70,9 +79,10 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
     override fun onBackPressed() {
         handleBackButtonClick(
             listOf(
+                HomeFragment.FRAGMENT_ID,
                 CreateCardFragment.FRAGMENT_ID,
                 DetailCardFragment.FRAGMENT_ID
-            ), true
+            )
         )
 
     }
@@ -208,35 +218,48 @@ class NavigateDrawerActivity : AppCompatActivity(), DrawerAdapter.OnItemSelected
         drawerRecyclerviewMenuList.adapter = adapter
 
         adapter.setSelected(POS_DASHBOARD)
-
     }
 
-    private fun handleBackButtonClick(listFragmentsId: List<String>, isOnBackPressed: Boolean) {
-        val listFragmentsVisibility = mutableListOf<Boolean?>()
+    private fun handleBackButtonClick(listFragmentsId: List<String>) {
+        val mapVisibilityByFragments = mutableMapOf<String, Boolean>()
 
         listFragmentsId.forEach { fragmentId ->
-            listFragmentsVisibility.add(fragmentManager?.findFragmentByTag(fragmentId)?.isVisible)
+            mapVisibilityByFragments[fragmentId] = fragmentManager?.findFragmentByTag(fragmentId)?.isVisible == true
         }
 
-        if (listFragmentsVisibility.any { it == true }) {
-            fragmentManager?.popBackStackImmediate()
-            ivUpButton?.setImageResource(R.drawable.ic_menu)
-        } else {
-            //Обработка нажатия onBackPressed()
-            if (isOnBackPressed) {
-                moveTaskToBack(true);
-            } else {
+        when (true) {
+            mapVisibilityByFragments[CreateCardFragment.FRAGMENT_ID] -> {
+                fragmentManager?.popBackStackImmediate()
+                ivUpButton?.setImageResource(R.drawable.ic_menu)
+            }
+
+            mapVisibilityByFragments[DetailCardFragment.FRAGMENT_ID] -> {
+                fragmentManager?.popBackStackImmediate()
+                ivUpButton?.setImageResource(R.drawable.ic_menu)
+
+                val slideUp: Animation = AnimationUtils.loadAnimation(this, R.anim.anim_zum_close)
+                val cardStackView = findViewById<CardStackView>(R.id.card_stack_view)
+
+                cardStackView?.startAnimation(slideUp);
+                val fr = fragmentManager?.findFragmentByTag(HomeFragment.FRAGMENT_ID) as HomeFragment
+                val easyFlipView = fr.getEasyFlipView()
+
+                Handler().postDelayed({
+                    easyFlipView?.setFlipTypeFromBack()
+                    easyFlipView?.flipTheView()
+                }, 400)
+            }
+
+            else -> {
                 if (slidingRootNav?.isMenuOpened == true) {
                     slidingRootNav?.closeMenu()
-
-
                 } else {
-                    containerDrawerLayout?.visibility = View.GONE
+//                    containerDrawerLayout?.visibility = View.GONE
                     slidingRootNav?.openMenu()
                 }
             }
-
         }
+
     }
 
     private fun ImageView.setUpButtonListener(onClick: (View) -> Unit) {
