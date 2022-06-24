@@ -2,15 +2,12 @@ package com.example.myapplication.presentation.core
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,22 +18,23 @@ import com.example.myapplication.libraries.drawerview.*
 import com.example.myapplication.libraries.drawerview.callback.DragStateListener
 import com.example.myapplication.presentation.core.cardCreate.CreateCardFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
-import com.example.myapplication.presentation.core.home.HomeFragment
+import com.example.myapplication.presentation.core.cardstack.CardStackFragment
 
 
 class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedListener, DragStateListener {
     private var binding: ActivityNavigateDrawerBinding? = null
     private var slidingRootNav: SlidingRootNav? = null
+    private var ivUpButton: ImageView? = null
+
+    private var fragmentManager: FragmentManager? = null
+    private var cardStackFragment: CardStackFragment? = null
+    private var cardCreateFragment: CreateCardFragment? = null
+
     private val POS_DASHBOARD = 0
     private val POS_ACCOUNT = 1
     private val POS_MESSAGES = 2
     private val POS_CART = 3
     private val POS_LOGOUT = 5
-    private var ivUpButton: ImageView? = null
-    private var fragmentManager: FragmentManager? = null
-
-    private var homeFragment: HomeFragment? = null
-    private var cardCreateFragment: CreateCardFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +44,9 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
 
         fragmentManager = supportFragmentManager
         ivUpButton = binding?.toolbarContainer?.ivUpButton
-        homeFragment = HomeFragment().newInstance()
-        cardCreateFragment = CreateCardFragment()
+
+        cardStackFragment = CardStackFragment.newInstance()
+        cardCreateFragment = CreateCardFragment.newInstance()
 
         initBaseActivity(ivUpButton as View)
         initDrawer(savedInstanceState)
@@ -55,22 +54,21 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
     }
 
     override fun onBackButtonOnClick(upButton: ImageView?, isOnBackPressed: Boolean) {
-
         when (true) {
-            (fragmentManager?.getFragmentVisibility(CreateCardFragment.FRAGMENT_ID)) -> {
-                fragmentManager?.popBackStackImmediate()
+            fragmentManager?.getFragmentVisibility(CreateCardFragment.FRAGMENT_ID) -> {
+                fragmentManager?.popBackStack()
                 ivUpButton?.setImageResource(R.drawable.ic_menu)
             }
 
-            (fragmentManager?.getFragmentVisibility(DetailCardFragment.FRAGMENT_ID)) -> {
-                fragmentManager?.popBackStackImmediate()
+            fragmentManager?.getFragmentVisibility(DetailCardFragment.FRAGMENT_ID) -> {
+                fragmentManager?.popBackStack()
                 ivUpButton?.setImageResource(R.drawable.ic_menu)
 
                 val slideUp: Animation = AnimationUtils.loadAnimation(this, R.anim.anim_zum_close)
                 val cardStackView = findViewById<CardStackView>(R.id.card_stack_view)
                 cardStackView?.startAnimation(slideUp);
 
-                val easyFlipView = homeFragment?.getEasyFlipView()
+                val easyFlipView = cardStackFragment?.getEasyFlipView()
                 easyFlipView?.setFlipTypeFromBack()
                 easyFlipView?.flipTheView()
 
@@ -93,14 +91,20 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
     }
 
     //Обробатываю выбор елемента из DrawerMenu
-    override fun onItemSelected(position: Int) {
+    override fun onDrawerItemSelected(position: Int) {
         if (position == POS_LOGOUT) {
             finish()
         }
 
         if (position == POS_DASHBOARD) {
             slidingRootNav!!.closeMenu()
-            fragmentManager?.startFragment(homeFragment!!, HomeFragment.FRAGMENT_ID)
+            fragmentManager?.startFragment(
+                fragmentManager = fragmentManager!!,
+                fragment = cardStackFragment!!,
+                newTag = CardStackFragment.FRAGMENT_ID,
+                animation = FragmentAnim(0, 0, 0, 0),
+                isReplace = true
+            )
         }
 
     }
@@ -121,7 +125,14 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
         val itemId = item.itemId
         when (itemId) {
             R.id.add_new_card -> {
-                fragmentManager?.startFragment(cardCreateFragment!!, CreateCardFragment.FRAGMENT_ID)
+                fragmentManager?.startFragment(
+                    fragmentManager = fragmentManager!!,
+                    fragment = cardCreateFragment!!,
+                    newTag = CreateCardFragment.FRAGMENT_ID,
+                    animation = FragmentAnim(R.anim.anim_slide_down, 0, 0, R.anim.anim_slide_up),
+                    isReplace = false
+                )
+
             }
 
             R.id.action_settings -> {
@@ -133,12 +144,10 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
         return true
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         binding = null
     }
-
 
     private fun createItemFor(position: Int): DrawerItem<*> {
         val simpleItem = SimpleItem(

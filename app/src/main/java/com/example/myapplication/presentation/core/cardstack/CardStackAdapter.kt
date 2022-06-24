@@ -1,6 +1,5 @@
-package com.example.myapplication.presentation.core.home
+package com.example.myapplication.presentation.core.cardstack
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.model.Spot
 import com.wajahatkarim3.easyflipview.EasyFlipView
-import kotlin.math.log
 
 
 class CardStackAdapter(

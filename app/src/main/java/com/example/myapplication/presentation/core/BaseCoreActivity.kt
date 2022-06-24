@@ -1,34 +1,23 @@
 package com.example.myapplication.presentation.core
 
-import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
+import androidx.annotation.AnimRes
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.FragmentManager
 import com.example.myapplication.R
 import com.example.myapplication.presentation.core.cardCreate.CreateCardFragment
-import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
-import com.example.myapplication.presentation.core.home.HomeFragment
+import com.example.myapplication.presentation.core.cardstack.CardStackFragment
 
 abstract class BaseCoreActivity: AppCompatActivity(){
     private var ivUpButton: ImageView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-
-    }
-
     abstract fun onBackButtonOnClick(upButton: ImageView?, isOnBackPressed: Boolean)
-
-
 
     override fun onBackPressed() {
         onBackButtonOnClick(ivUpButton, true)
@@ -60,16 +49,34 @@ abstract class BaseCoreActivity: AppCompatActivity(){
         return this.findFragmentByTag(tag)?.isVisible == true
     }
 
-    fun FragmentManager.startFragment(fragment: Fragment, newTag: String) {
-        if (HomeFragment.FRAGMENT_ID != newTag) {
+    fun FragmentManager.startFragment(fragmentManager: FragmentManager, fragment: Fragment, newTag: String, animation: FragmentAnim, isReplace: Boolean) {
+        if (CardStackFragment.FRAGMENT_ID != newTag) {
             ivUpButton?.setImageResource(R.drawable.ic_arrow_back)
         }
 
-        supportFragmentManager.beginTransaction()
-            .addToBackStack(newTag)
-            .replace(R.id.fragment_container, fragment, newTag)
-            .commit()
+        if (isReplace){
+            fragmentManager.beginTransaction()
+                .setCustomAnimations(animation.enter, animation.exit, animation.popEnter, animation.popExit)
+                .addToBackStack(newTag)
+                .replace(R.id.fragment_container, fragment, newTag)
+                .commit()
+
+        }else{
+            fragmentManager.beginTransaction()
+                .setCustomAnimations(animation.enter, animation.exit, animation.popEnter, animation.popExit)
+                .addToBackStack(newTag)
+                .add(R.id.fragment_container, fragment, newTag)
+                .commit()
+        }
+
     }
+
+    inner class FragmentAnim(
+        @AnimRes val enter: Int = 0,
+        @AnimRes val exit: Int = 0,
+        @AnimRes val popEnter: Int = 0,
+        @AnimRes val popExit: Int = 0,
+    )
 
 
 }

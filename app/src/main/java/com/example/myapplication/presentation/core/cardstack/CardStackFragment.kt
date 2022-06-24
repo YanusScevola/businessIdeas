@@ -1,31 +1,27 @@
-package com.example.myapplication.presentation.core.home
+package com.example.myapplication.presentation.core.cardstack
 
-import android.app.Notification.EXTRA_TEXT
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.view.animation.*
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.R
 import com.example.myapplication.libraries.cardview.*
 import com.example.myapplication.model.Spot
-import com.example.myapplication.presentation.core.BaseFragment
+import com.example.myapplication.presentation.core.BaseCoreFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
-class HomeFragment : BaseFragment(),
-    CardStackListener, CardStackAdapter.OnClickListener {
+class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapter.OnClickListener {
 
-    private val model: HomeViewModel by activityViewModels()
+    private val model: CardStackViewModel by activityViewModels()
 //    private val cardStackView by lazy { view?.findViewById<CardStackView>(R.id.card_stack_view) }
 //    private val manager by lazy { CardStackLayoutManager(requireContext(), this) }
 //    private val adapter by lazy { CardStackAdapter(createSpots()) }
@@ -44,7 +40,6 @@ class HomeFragment : BaseFragment(),
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
 
-
         }
     }
 
@@ -52,38 +47,25 @@ class HomeFragment : BaseFragment(),
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_card_stack, container, false)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
         ivUpButton = requireActivity().findViewById(R.id.iv_upButton)
         cardStackView = view.findViewById(R.id.card_stack_view)
 
         manager = CardStackLayoutManager(requireContext(), this)
         adapter = CardStackAdapter(createSpots(), this)
+
+        initBaseFragment(ivUpButton as ImageView, this)
         setupCardStackView()
         setupButton()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
-
-//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
-//            override fun handleOnBackPressed() {
-//                activity?.moveTaskToBack(true);
-//            }
-//
-//        });
     }
 
-    fun newInstance(): HomeFragment {
-        val fragment = HomeFragment()
-        val args = Bundle()
-        args.putString(EXTRA_TEXT, "text")
-        fragment.arguments = args
-        return fragment
-    }
 
     override fun onCardDragging(direction: Direction, ratio: Float) {
         Log.d("CardStackView", "onCardDragging: d = ${direction.name}, r = $ratio")
@@ -123,33 +105,14 @@ class HomeFragment : BaseFragment(),
     override fun onFlip(flipView: EasyFlipView, flipSide: String) {
         if (flipSide == "BACK_SIDE") {
             val slideUp: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_zum_open)
-            startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID)
             cardStackView?.startAnimation(slideUp)
+            Handler().postDelayed({
+            parentFragmentManager.startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID, false)
+            }, 300)
+
         }
     }
 
-
-
-    private fun startFragment(fragment: Fragment, tag: String) {
-        if (FRAGMENT_ID != tag) {
-            ivUpButton?.setImageResource(R.drawable.ic_arrow_back)
-        }
-
-        Handler().postDelayed({
-            parentFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.anim_in, R.anim.anim_in)
-                .addToBackStack(tag)
-                .add(R.id.fragment_container, fragment, tag)
-                .commit()
-        }, 300)
-
-    }
-
-
-
-    private fun setupCardStackView() {
-        initialize()
-    }
 
     private fun setupButton() {
         val skip = view?.findViewById<View>(R.id.skip_button)
@@ -186,7 +149,7 @@ class HomeFragment : BaseFragment(),
         }
     }
 
-    private fun initialize() {
+    private fun setupCardStackView() {
         manager!!.setStackFrom(StackFrom.None)
         manager!!.setVisibleCount(3)
         manager!!.setTranslationInterval(8.0f)
@@ -330,40 +293,25 @@ class HomeFragment : BaseFragment(),
         return spots
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
     fun getEasyFlipView(): EasyFlipView? {
         return adapter?.getFlipView()
     }
 
 
     companion object {
-        const val FRAGMENT_ID = "HomeFragment"
+        const val FRAGMENT_ID = "CardStackFragment"
         private const val ARG_PARAM1 = "param1"
         private const val ARG_PARAM2 = "param2"
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
+        fun newInstance() =
+            CardStackFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
     }
-
-
 
 
 }

@@ -1,10 +1,10 @@
-package com.example.myapplication.presentation.core.home
+package com.example.myapplication.presentation.core.cardstack
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.model.Spot
 
-class HomeViewModel: ViewModel() {
+class CardStackViewModel: ViewModel() {
     val spotArray = MutableLiveData<ArrayList<Spot>>().apply {
         val spots = ArrayList<Spot>()
         spots.add(Spot(name = "Чайный магазин", city = "Cтоимость бизнеса", url = "https://www.openbusiness.ru/upload/iblock/91e/chainy_magazin.jpg"))

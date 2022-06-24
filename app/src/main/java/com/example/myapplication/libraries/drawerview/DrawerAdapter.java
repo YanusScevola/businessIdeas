@@ -86,7 +86,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
         notifyItemChanged(position);
 
         if (listener != null) {
-            listener.onItemSelected(position);
+            listener.onDrawerItemSelected(position);
         }
     }
 
@@ -110,6 +110,6 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
     }
 
     public interface OnItemSelectedListener {
-        void onItemSelected(int position);
+        void onDrawerItemSelected(int position);
     }
 }
