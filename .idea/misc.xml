@@ -94,11 +94,12 @@
         <entry key="app/src/main/res/layout/action_view_switch.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13229166666666667" />
         <entry key="app/src/main/res/layout/activity_navigate_drawer.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_card_stack.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_create_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detali_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.13229166666666667" />
         <entry key="app/src/main/res/layout/item_option.xml" value="0.125" />
-        <entry key="app/src/main/res/layout/item_spot.xml" value="0.13229166666666667" />
+        <entry key="app/src/main/res/layout/item_spot.xml" value="0.2344139650872818" />
         <entry key="app/src/main/res/layout/left_drawer_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header_navigate_drawer.xml" value="0.1" />
@@ -115,5 +116,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.13229166666666667" />
+      </ProjectState>
+    </option>
   </component>
 </project>

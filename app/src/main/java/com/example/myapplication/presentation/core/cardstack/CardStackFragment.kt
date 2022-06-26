@@ -1,13 +1,14 @@
 package com.example.myapplication.presentation.core.cardstack
 
-import android.os.Bundle
-import android.os.Handler
+
+import android.os.*
 import android.util.Log
 import android.view.*
 import android.view.animation.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
@@ -16,6 +17,8 @@ import com.example.myapplication.libraries.cardview.*
 import com.example.myapplication.model.Spot
 import com.example.myapplication.presentation.core.BaseCoreFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
+import com.example.myapplication.utils.AnimUtils
+import com.example.myapplication.utils.CardUtils
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
@@ -33,6 +36,8 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     private var param1: String? = null
     private var param2: String? = null
     private var ivUpButton: ImageView? = null
+    private var containerCardInfo: ConstraintLayout? = null
+    private var currentCardImageView: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +47,6 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
 
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -61,11 +65,13 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
         manager = CardStackLayoutManager(requireContext(), this)
         adapter = CardStackAdapter(createSpots(), this)
 
+        containerCardInfo = getCurrentCardContainerInfo()
+        currentCardImageView = getImageView()
+
         initBaseFragment(ivUpButton as ImageView, this)
         setupCardStackView()
         setupButton()
     }
-
 
     override fun onCardDragging(direction: Direction, ratio: Float) {
         Log.d("CardStackView", "onCardDragging: d = ${direction.name}, r = $ratio")
@@ -87,12 +93,28 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     }
 
     override fun onCardAppeared(view: View, position: Int) {
-        val textView = view.findViewById<TextView>(R.id.item_name)
-        Log.d("CardStackView", "onCardAppeared: ($position) ${textView.text}")
+
+        val flipView = getCurrentCardEasyFlipView()
+
+//        val currentCardImageView = flipView?.findViewById<ImageView>(R.id.item_image)
+//        val containerCardInfo: ConstraintLayout = flipView?.findViewById(R.id.container_info)!!
+
+        val bitmap = CardUtils.getScreenShotFromView(flipView!!)
+        currentCardImageView?.setImageBitmap(bitmap)
+        containerCardInfo?.visibility = View.GONE
+
     }
 
     override fun onCardDisappeared(view: View, position: Int) {
+
+
         val textView = view.findViewById<TextView>(R.id.item_name)
+        val flipView = getCurrentCardEasyFlipView()
+        val containerCardInfo: ConstraintLayout = flipView!!.findViewById(R.id.container_info)
+        containerCardInfo.visibility = View.VISIBLE
+
+
+//        getCurrentCardContainerInfo()?.visibility = View.GONE
         Log.d("CardStackView", "onCardDisappeared: ($position) ${textView.text}")
     }
 
@@ -103,15 +125,44 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     }
 
     override fun onFlip(flipView: EasyFlipView, flipSide: String) {
+        containerCardInfo = flipView.findViewById(R.id.container_info)
+        currentCardImageView = flipView.findViewById(R.id.item_image)
+
+
         if (flipSide == "BACK_SIDE") {
             val slideUp: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_zum_open)
             cardStackView?.startAnimation(slideUp)
-            Handler().postDelayed({
-            parentFragmentManager.startFragment(DetailCardFragment(), DetailCardFragment.FRAGMENT_ID, false)
-            }, 300)
+
+//            containerCardInfo?.visibility = View.GONE
+
+            parentFragmentManager.startFragment(
+                fragment = DetailCardFragment(),
+                newTag = DetailCardFragment.FRAGMENT_ID,
+                animation = AnimUtils.AnimFragmentTransaction(0, 0, 0, 0),
+                isReplace = false,
+                delayMillis = 300
+            )
+
+        } else {
+            containerCardInfo?.visibility = View.VISIBLE
+            val bitmap = CardUtils.getScreenShotFromView(flipView)
+            currentCardImageView?.setImageBitmap(bitmap)
+            containerCardInfo?.visibility = View.GONE
 
         }
+
     }
+
+    override fun onClickCard(flipView: EasyFlipView, image: ImageView) {
+        containerCardInfo = flipView.findViewById(R.id.container_info)
+        currentCardImageView = image
+
+        val bitmap = CardUtils.getScreenShotFromView(flipView)
+        currentCardImageView?.setImageBitmap(bitmap)
+        containerCardInfo?.visibility = View.GONE
+    }
+
+
 
 
     private fun setupButton() {
@@ -293,8 +344,16 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
         return spots
     }
 
-    fun getEasyFlipView(): EasyFlipView? {
+    fun getCurrentCardEasyFlipView(): EasyFlipView? {
         return adapter?.getFlipView()
+    }
+
+    fun getCurrentCardContainerInfo(): ConstraintLayout? {
+        return adapter?.getContainerInfo()
+    }
+
+    fun getImageView(): ImageView? {
+        return adapter?.getImageView()
     }
 
 
