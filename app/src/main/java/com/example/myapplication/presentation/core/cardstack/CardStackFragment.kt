@@ -18,7 +18,7 @@ import com.example.myapplication.model.Spot
 import com.example.myapplication.presentation.core.BaseCoreFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.example.myapplication.utils.AnimUtils
-import com.example.myapplication.utils.CardUtils
+import com.example.myapplication.utils.ScreenUtils
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
@@ -93,21 +93,16 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     }
 
     override fun onCardAppeared(view: View, position: Int) {
-
         val flipView = getCurrentCardEasyFlipView()
 
-//        val currentCardImageView = flipView?.findViewById<ImageView>(R.id.item_image)
-//        val containerCardInfo: ConstraintLayout = flipView?.findViewById(R.id.container_info)!!
-
-        val bitmap = CardUtils.getScreenShotFromView(flipView!!)
+        containerCardInfo?.visibility = View.VISIBLE
+        val bitmap = ScreenUtils.getScreenShotFromView(flipView!!)
         currentCardImageView?.setImageBitmap(bitmap)
         containerCardInfo?.visibility = View.GONE
 
     }
 
     override fun onCardDisappeared(view: View, position: Int) {
-
-
         val textView = view.findViewById<TextView>(R.id.item_name)
         val flipView = getCurrentCardEasyFlipView()
         val containerCardInfo: ConstraintLayout = flipView!!.findViewById(R.id.container_info)
@@ -124,16 +119,13 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
 
     }
 
-    override fun onFlip(flipView: EasyFlipView, flipSide: String) {
+    override fun onFlipCard(flipView: EasyFlipView, flipSide: String) {
         containerCardInfo = flipView.findViewById(R.id.container_info)
         currentCardImageView = flipView.findViewById(R.id.item_image)
 
 
         if (flipSide == "BACK_SIDE") {
-            val slideUp: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_zum_open)
-            cardStackView?.startAnimation(slideUp)
-
-//            containerCardInfo?.visibility = View.GONE
+            AnimUtils.startAnimation(cardStackView as View, R.anim.anim_zum_open)
 
             parentFragmentManager.startFragment(
                 fragment = DetailCardFragment(),
@@ -144,8 +136,9 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
             )
 
         } else {
+
             containerCardInfo?.visibility = View.VISIBLE
-            val bitmap = CardUtils.getScreenShotFromView(flipView)
+            val bitmap = ScreenUtils.getScreenShotFromView(flipView)
             currentCardImageView?.setImageBitmap(bitmap)
             containerCardInfo?.visibility = View.GONE
 
@@ -153,11 +146,12 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
 
     }
 
-    override fun onClickCard(flipView: EasyFlipView, image: ImageView) {
+    override fun onClickCard(flipView: EasyFlipView) {
         containerCardInfo = flipView.findViewById(R.id.container_info)
-        currentCardImageView = image
+        currentCardImageView = flipView.findViewById(R.id.iv_upButton)
 
-        val bitmap = CardUtils.getScreenShotFromView(flipView)
+        containerCardInfo?.visibility = View.VISIBLE
+        val bitmap = ScreenUtils.getScreenShotFromView(flipView)
         currentCardImageView?.setImageBitmap(bitmap)
         containerCardInfo?.visibility = View.GONE
     }

@@ -1,7 +1,6 @@
 package com.example.myapplication.presentation.core.cardstack
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -40,10 +39,10 @@ class CardStackAdapter(
         containerCardInfo = holder.containerInfo
         containerCardImage = holder.image
 
-
-        Glide.with(holder.image)
-            .load(spot.url)
-            .into(holder.image)
+//
+//        Glide.with(holder.image)
+//            .load(spot.url)
+//            .into(holder.image)
 
         Glide.with(holder.image)
             .load(spot.url)
@@ -56,24 +55,24 @@ class CardStackAdapter(
 
         holder.easyFlipView.setOnTouchListener { view, motionEvent ->
             if(motionEvent.action == MotionEvent.ACTION_UP){
+                easyFlipView = holder.easyFlipView
 
-                Glide.with(holder.image)
-                    .load(spot.url)
-                    .into(holder.image)
+//                Glide.with(holder.image)
+//                    .load(spot.url)
+//                    .into(holder.image)
 
                 Glide.with(holder.image)
                     .load(spot.url)
                     .into(containerCardImage!!)
 
-                onClickListener.onClickCard (holder.easyFlipView, holder.image)
-
+                onClickListener.onClickCard(holder.easyFlipView)
 
             }
             return@setOnTouchListener true
         }
 
         holder.easyFlipView.setOnFlipListener { flipView, newCurrentSide ->
-            onClickListener.onFlip(flipView, newCurrentSide.toString())
+            onClickListener.onFlipCard(flipView, newCurrentSide.toString())
             easyFlipView = holder.easyFlipView
 
             Glide.with(holder.image)
@@ -115,20 +114,11 @@ class CardStackAdapter(
         val easyFlipView: EasyFlipView = view.findViewById(R.id.easy_flip_view)
         val containerInfo: ConstraintLayout = view.findViewById(R.id.container_info)
 
-
-        init {
-
-
-        }
-
-
     }
 
-
-
     interface OnClickListener {
-        fun onFlip(flipView: EasyFlipView, flipSide: String)
-        fun onClickCard(flipView: EasyFlipView, image: ImageView)
+        fun onFlipCard(flipView: EasyFlipView, flipSide: String)
+        fun onClickCard(flipView: EasyFlipView)
     }
 
 }

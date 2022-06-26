@@ -6,8 +6,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
@@ -69,8 +67,8 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
 
                 val easyFlipView = cardStackFragment?.getCurrentCardEasyFlipView()
                 val cardStackView = findViewById<CardStackView>(R.id.card_stack_view)
-                val slideUp: Animation = AnimationUtils.loadAnimation(this, R.anim.anim_zum_close)
-                cardStackView?.startAnimation(slideUp)
+
+                AnimUtils.startAnimation(cardStackView as View, R.anim.anim_zum_close)
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     easyFlipView?.setFlipTypeFromBack()
