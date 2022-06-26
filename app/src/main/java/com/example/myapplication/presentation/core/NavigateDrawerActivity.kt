@@ -73,7 +73,8 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
                 Handler(Looper.getMainLooper()).postDelayed({
                     easyFlipView?.setFlipTypeFromBack()
                     easyFlipView?.flipTheView()
-                }, 400)
+                    easyFlipView?.setFlipTypeFromFront()
+                }, 500)
 
             }
 
