@@ -27,6 +27,7 @@ class ScreenUtils {
                 Log.e("GFG", "Failed to capture screenshot because:" + e.message)
             }
             return screenshot
+
         }
 
         fun replaceViewWithScreenshot(viewForScreenshot: View, imageViewForReplace: ImageView?, viewShouldBeGoneAfterReplace: View?) {

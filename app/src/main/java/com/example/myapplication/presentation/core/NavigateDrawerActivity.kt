@@ -65,16 +65,15 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
                 fragmentManager?.popBackStack()
                 ivUpButton?.setImageResource(R.drawable.ic_menu)
 
-                val easyFlipView = cardStackFragment?.getCurrentCardEasyFlipView()
-                val cardStackView = findViewById<CardStackView>(R.id.card_stack_view)
+//                val easyFlipView = cardStackFragment?.getCurrentCardEasyFlipView()
+//                val cardStackView = findViewById<CardStackView>(R.id.card_stack_view)
 
-                AnimUtils.startAnimation(cardStackView as View, R.anim.anim_zum_close)
+//                AnimUtils.startAnimation(cardStackView as View, R.anim.anim_zum_close)
 
-                Handler(Looper.getMainLooper()).postDelayed({
-                    easyFlipView?.setFlipTypeFromBack()
-                    easyFlipView?.flipTheView()
-                    easyFlipView?.setFlipTypeFromFront()
-                }, 500)
+//                Handler(Looper.getMainLooper()).postDelayed({
+//                    easyFlipView?.setFlipTypeFromBack()
+//                    easyFlipView?.flipTheView()
+//                }, 400)
 
             }
 
