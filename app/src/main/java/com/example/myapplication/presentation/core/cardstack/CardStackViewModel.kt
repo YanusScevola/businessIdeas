@@ -17,6 +17,11 @@ class CardStackViewModel: ViewModel() {
         spots.add(Spot(name = "Продажа картошки", city = "Cтоимость бизнеса", url = "https://politikus.ru/uploads/posts/2020-05/1589587429_maxresdefault-10.jpg"))
         spots.add(Spot(name = "Продажа воды опром", city = "Cтоимость бизнеса", url = "https://g-kom.com/upload/iblock/712/712887224c0935ee097572e071a70d38.jpg"))
         spots.add(Spot(name = "Покупки из китая", city = "Cтоимость бизнеса", url = "https://chinaprices.ru/blog/wp-content/uploads/2015/04/1.jpg"))
+        spots.add(Spot(name = "Отделение почты", city = "Cтоимость бизнеса", url = "https://retailers.ua/media/news/1100-s-crop-w/00/02/2011/unnamed-2587-2850-3099-3679-3692.jpg"))
+        spots.add(Spot(name = "Разработка игр", city = "Cтоимость бизнеса", url = "https://kvantprogramm.ru/wp-content/uploads/2018/06/game2.jpg"))
+        spots.add(Spot(name = "Продажа картошки", city = "Cтоимость бизнеса", url = "https://politikus.ru/uploads/posts/2020-05/1589587429_maxresdefault-10.jpg"))
+        spots.add(Spot(name = "Продажа воды опром", city = "Cтоимость бизнеса", url = "https://g-kom.com/upload/iblock/712/712887224c0935ee097572e071a70d38.jpg"))
+        spots.add(Spot(name = "Покупки из китая", city = "Cтоимость бизнеса", url = "https://chinaprices.ru/blog/wp-content/uploads/2015/04/1.jpg"))
         value = spots
     }
 
