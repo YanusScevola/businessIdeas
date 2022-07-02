@@ -25,7 +25,6 @@ class CardStackAdapter(
     private val onClickListener: OnClickListener
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
     var cardViewHolderList = mutableListOf<ViewHolder>()
-    var listener: ViewTreeObserver.OnGlobalLayoutListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -59,7 +58,7 @@ class CardStackAdapter(
             onClickListener.onFlipCard(flipView, newCurrentSide.toString())
         }
 
-
+        Log.i("tag", "1position: $position")
         holder.easyFlipView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 if (Build.VERSION.SDK_INT > 16) {
@@ -67,17 +66,19 @@ class CardStackAdapter(
                 } else {
                     holder.easyFlipView.viewTreeObserver.removeGlobalOnLayoutListener(this);
                 }
+                Log.i("tag", "2position: $position")
 
 
                 GlobalScope.launch {
-                    delay(500)
-                    Log.i("tag", "1")
+                    delay(350)
+                    Log.i("tag", "3position: ${position}")
                     activity.runOnUiThread {
-                        holder.containerInfo.visibility = View.VISIBLE
-                        val bitmap = ScreenUtils.getScreenShotFromView(holder.easyFlipView)
+
+                        cardViewHolderList[position].containerInfo.visibility = View.VISIBLE
+                        val bitmap = ScreenUtils.getScreenShotFromView(cardViewHolderList[position].easyFlipView)
 //                      ScreenUtils.saveMediaToStorage(activity, bitmap!!)
-                        holder.image.setImageBitmap(bitmap)
-                        holder.containerInfo.visibility = View.GONE
+                        cardViewHolderList[position].image.setImageBitmap(bitmap)
+                        cardViewHolderList[position].containerInfo.visibility = View.GONE
                     }
                 }
 

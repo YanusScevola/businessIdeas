@@ -93,10 +93,12 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
 
     override fun onCardDisappeared(view: View, position: Int) {
         val textView = view.findViewById<TextView>(R.id.item_name)
-        val flipView = getCardFlipView(position)
-        val containerCardInfo: ConstraintLayout = flipView!!.findViewById(R.id.container_info)
-
-        containerCardInfo.visibility = View.VISIBLE
+//        val flipView = getCardFlipView(position)
+//        val containerCardInfo: ConstraintLayout = flipView!!.findViewById(R.id.container_info)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            containerCardInfo.visibility = View.VISIBLE
+//        },100)
+//
         Log.d("CardStackView", "onCardDisappeared: ($position) ${textView.text}")
     }
 

@@ -5,28 +5,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_wallpaper"
     tools:context=".presentation.first.MainActivity">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_wallpaper"
-        android:orientation="vertical">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipChildren="false">
 
-            <RelativeLayout
+            <com.example.myapplication.libraries.cardview.CardStackView
+                android:id="@+id/card_stack_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_above="@+id/button_container"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginBottom="60dp"
+                android:clipToPadding="false"
+                app:layout_constraintBottom_toBottomOf="@+id/button_container"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <LinearLayout
                 android:id="@+id/button_container"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginBottom="8dp"
                 android:layout_above="@+id/container_navigation"
+                android:layout_marginBottom="16dp"
                 android:clipChildren="false"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/container_navigation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/skip_button"
@@ -66,7 +79,7 @@
                     app:fabSize="auto"
                     app:rippleColor="#226FE2B3" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/container_navigation"
@@ -75,7 +88,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:gravity="center">
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <nl.joery.animatedbottombar.AnimatedBottomBar
                     android:id="@+id/bottom_bar"
@@ -95,18 +111,9 @@
 
             </LinearLayout>
 
-            <com.example.myapplication.libraries.cardview.CardStackView
-                android:id="@+id/card_stack_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/button_container"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:clipToPadding="false"
-                android:padding="4dp" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+
