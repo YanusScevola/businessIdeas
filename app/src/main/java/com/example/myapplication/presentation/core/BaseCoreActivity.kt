@@ -51,7 +51,7 @@ abstract class BaseCoreActivity : AppCompatActivity() {
     fun FragmentManager.startFragment(
         fragment: Fragment,
         newTag: String,
-        animation: AnimUtils.AnimFragmentTransaction,
+        animation: AnimUtils.AnimFragmentTransaction?,
         isReplace: Boolean,
         delayMillis: Long
     ) {
@@ -63,13 +63,13 @@ abstract class BaseCoreActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({
                 if (isReplace) {
                     this.beginTransaction()
-                        .setCustomAnimations(animation.enter, animation.exit, animation.popEnter, animation.popExit)
+                        .setCustomAnimations(animation?.enter ?: 0, animation?.exit ?: 0, animation?.popEnter ?: 0, animation?.popExit ?: 0)
                         .addToBackStack(newTag)
                         .replace(R.id.fragment_container, fragment, newTag)
                         .commit()
                 } else {
                     this.beginTransaction()
-                        .setCustomAnimations(animation.enter, animation.exit, animation.popEnter, animation.popExit)
+                        .setCustomAnimations(animation?.enter ?: 0, animation?.exit ?: 0, animation?.popEnter ?: 0, animation?.popExit ?: 0)
                         .addToBackStack(newTag)
                         .add(R.id.fragment_container, fragment, newTag)
                         .commit()
@@ -79,13 +79,13 @@ abstract class BaseCoreActivity : AppCompatActivity() {
         } else {
             if (isReplace) {
                 this.beginTransaction()
-                    .setCustomAnimations(animation.enter, animation.exit, animation.popEnter, animation.popExit)
+                    .setCustomAnimations(animation?.enter ?: 0, animation?.exit ?: 0, animation?.popEnter ?: 0, animation?.popExit ?: 0)
                     .addToBackStack(newTag)
                     .replace(R.id.fragment_container, fragment, newTag)
                     .commit()
             } else {
                 this.beginTransaction()
-                    .setCustomAnimations(animation.enter, animation.exit, animation.popEnter, animation.popExit)
+                    .setCustomAnimations(animation?.enter ?: 0, animation?.exit ?: 0, animation?.popEnter ?: 0, animation?.popExit ?: 0)
                     .addToBackStack(newTag)
                     .add(R.id.fragment_container, fragment, newTag)
                     .commit()

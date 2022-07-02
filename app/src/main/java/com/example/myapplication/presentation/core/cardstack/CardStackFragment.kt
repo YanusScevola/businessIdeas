@@ -8,7 +8,6 @@ import android.view.animation.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
@@ -18,7 +17,6 @@ import com.example.myapplication.model.Spot
 import com.example.myapplication.presentation.core.BaseCoreFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.example.myapplication.utils.AnimUtils
-import com.example.myapplication.utils.ScreenUtils
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
@@ -110,17 +108,15 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
 
     override fun onFlipCard(flipView: EasyFlipView, flipSide: String) {
         if (flipSide == "BACK_SIDE") {
-//            AnimUtils.startAnimation(cardStackView as View, R.anim.anim_zum_open)
-//
-//            parentFragmentManager.startFragment(
-//                fragment = DetailCardFragment(),
-//                newTag = DetailCardFragment.FRAGMENT_ID,
-//                animation = AnimUtils.AnimFragmentTransaction(0, 0, 0, 0),
-//                isReplace = false,
-//                delayMillis = 300
-//            )
+            AnimUtils.startAnimation(cardStackView as View, R.anim.anim_zum_open)
 
-        } else {
+            parentFragmentManager.startFragment(
+                fragment = DetailCardFragment(),
+                newTag = DetailCardFragment.FRAGMENT_ID,
+                animation = null,
+                isReplace = false,
+                delayMillis = 300
+            )
 
         }
 
@@ -310,8 +306,12 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
         return spots
     }
 
-    fun getCardFlipView(position: Int): EasyFlipView? {
-        return adapter?.getCardViewHolderList(position)?.easyFlipView
+    fun getCardFlipViewByPosition(position: Int): EasyFlipView? {
+        return adapter?.getCardEasyFlipViewByPosition(position)
+    }
+
+    fun getCurrentCardViewHolderList(): EasyFlipView? {
+        return adapter?.getCurrentCardViewHolderList()
     }
 
 

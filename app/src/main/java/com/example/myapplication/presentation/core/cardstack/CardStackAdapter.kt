@@ -3,6 +3,7 @@ package com.example.myapplication.presentation.core.cardstack
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
+import android.graphics.Bitmap
 import android.os.Build
 import android.util.Log
 import android.view.*
@@ -17,6 +18,8 @@ import com.example.myapplication.model.Spot
 import com.example.myapplication.utils.ScreenUtils
 import com.wajahatkarim3.easyflipview.EasyFlipView
 import kotlinx.coroutines.*
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 class CardStackAdapter(
@@ -25,6 +28,7 @@ class CardStackAdapter(
     private val onClickListener: OnClickListener
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
     var cardViewHolderList = mutableListOf<ViewHolder>()
+    var currentCardEasyFlipView: EasyFlipView? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -49,6 +53,7 @@ class CardStackAdapter(
 
         holder.easyFlipView.setOnTouchListener { view, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_UP) {
+                currentCardEasyFlipView = holder.easyFlipView
                 onClickListener.onClickCard(holder.easyFlipView)
             }
             return@setOnTouchListener true
@@ -70,15 +75,15 @@ class CardStackAdapter(
 
 
                 GlobalScope.launch {
-                    delay(350)
+                    delay(450)
                     Log.i("tag", "3position: ${position}")
                     activity.runOnUiThread {
 
-                        cardViewHolderList[position].containerInfo.visibility = View.VISIBLE
-                        val bitmap = ScreenUtils.getScreenShotFromView(cardViewHolderList[position].easyFlipView)
+                        holder.containerInfo.visibility = View.VISIBLE
+                        val bitmap = ScreenUtils.getScreenShotFromView(holder.easyFlipView)
 //                      ScreenUtils.saveMediaToStorage(activity, bitmap!!)
-                        cardViewHolderList[position].image.setImageBitmap(bitmap)
-                        cardViewHolderList[position].containerInfo.visibility = View.GONE
+                        holder.image.setImageBitmap(bitmap)
+                        holder.containerInfo.visibility = View.GONE
                     }
                 }
 
@@ -96,6 +101,10 @@ class CardStackAdapter(
         return spots.size
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     infix fun setSpots(spots: List<Spot>) {
         this.spots = spots
     }
@@ -104,13 +113,30 @@ class CardStackAdapter(
         return spots
     }
 
-    fun getCardViewHolderList(position: Int): ViewHolder {
-        return cardViewHolderList[position]
+    fun getCardEasyFlipViewByPosition(position: Int): EasyFlipView {
+        return cardViewHolderList[position].easyFlipView
     }
+
+    fun getCurrentCardViewHolderList(): EasyFlipView {
+        return currentCardEasyFlipView!!
+    }
+
+//    suspend fun setScreenShot(holder: CardStackAdapter.ViewHolder): Bitmap? {
+//        return suspendCoroutine { continuation ->
+//            activity.runOnUiThread {
+//                holder.containerInfo.visibility = View.VISIBLE
+//                val bitmap = ScreenUtils.getScreenShotFromView(holder.easyFlipView)
+////                      ScreenUtils.saveMediaToStorage(activity, bitmap!!)
+////                holder.image.setImageBitmap(bitmap)
+//                holder.containerInfo.visibility = View.GONE
+//                continuation.resume(bitmap)
+//            }
+//
+//        }
+//    }
 
     class ViewHolder(onClickListener: OnClickListener, view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.item_name)
-
         //        var city: TextView = view.findViewById(R.id.tv_donat_invest)
         var image: ImageView = view.findViewById(R.id.item_image)
         val easyFlipView: EasyFlipView = view.findViewById(R.id.easy_flip_view)
