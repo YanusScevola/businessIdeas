@@ -91,6 +91,7 @@
         <entry key="..\:/Users/vasea/StudioProjects/businessIdeas/app/src/main/res/menu/navigation_toolbar.xml" value="0.1796875" />
         <entry key="app/src/main/res/drawable/bottom_navigation_background.xml" value="0.1405" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_box_24.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/test.xml" value="0.174" />
         <entry key="app/src/main/res/layout/action_view_switch.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.13229166666666667" />
@@ -105,7 +106,7 @@
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header_navigate_drawer.xml" value="0.1" />
         <entry key="app/src/main/res/layout/overlay.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/toolbar_layout.xml" value="0.4567916870117188" />
+        <entry key="app/src/main/res/layout/toolbar_layout.xml" value="0.36" />
         <entry key="app/src/main/res/menu/navigate_drawer.xml" value="0.1" />
         <entry key="app/src/main/res/menu/navigation_toolbar.xml" value="0.1" />
         <entry key="app/src/main/res/menu/tabs.xml" value="0.13229166666666667" />

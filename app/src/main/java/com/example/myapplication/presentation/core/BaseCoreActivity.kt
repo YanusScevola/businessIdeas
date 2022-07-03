@@ -3,6 +3,7 @@ package com.example.myapplication.presentation.core
 import android.os.Handler
 import android.os.Looper
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.ColorRes
@@ -15,12 +16,14 @@ import com.example.myapplication.presentation.core.cardstack.CardStackFragment
 import com.example.myapplication.utils.AnimUtils
 
 abstract class BaseCoreActivity : AppCompatActivity() {
-    private var ivUpButton: ImageView? = null
+    private var btnUpButton: ImageView? = null
+    private var btnAddNewCard: ImageView? = null
 
-    abstract fun onBackButtonOnClick(upButton: ImageView?, isOnBackPressed: Boolean)
+    abstract fun onBackButtonOnClick(view: ImageView?, isOnBackPressed: Boolean)
+    abstract fun onClickToolbarButton(id: Int, view: View?, isClicked: Boolean)
 
     override fun onBackPressed() {
-        onBackButtonOnClick(ivUpButton, true)
+        onBackButtonOnClick(btnUpButton, true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -28,15 +31,45 @@ abstract class BaseCoreActivity : AppCompatActivity() {
         return true
     }
 
-    private fun handleUpButtonListener(ivUpButton: ImageView?) {
-        ivUpButton?.setOnClickListener {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var isSettingClicked = false
+        when (item.itemId) {
+            R.id.action_settings -> {
+                isSettingClicked = true
+                onClickToolbarButton(R.id.action_settings, item.actionView, isSettingClicked)
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+
+    private fun handleToolbarButtonsListener(btnList: List<View>) {
+        var isAddButtonClickClicked = false
+        btnList.forEach {
+            when(it.id){
+                R.id.btn_add_new_card ->{
+                    it.setOnClickListener {
+                        isAddButtonClickClicked = true
+                        onClickToolbarButton(R.id.btn_add_new_card, it as ImageView, isAddButtonClickClicked)
+                    }
+                }
+
+            }
+        }
+    }
+
+    private fun handleUpButtonListener(btn: ImageView?) {
+        btn?.setOnClickListener {
             onBackButtonOnClick(it as ImageView, false)
         }
     }
 
-    fun initBaseActivity(view: View) {
-        ivUpButton = view as ImageView
-        handleUpButtonListener(ivUpButton)
+
+    fun initBaseActivity(upButton: ImageView?, addNewCard: ImageView?) {
+        btnUpButton = upButton
+        btnAddNewCard = addNewCard
+        handleUpButtonListener(btnUpButton)
+        handleToolbarButtonsListener(listOf(addNewCard as View))
     }
 
     fun getColorFromResource(@ColorRes res: Int): Int {
@@ -44,7 +77,7 @@ abstract class BaseCoreActivity : AppCompatActivity() {
     }
 
 
-    fun FragmentManager.getFragmentVisibility(tag: String): Boolean {
+    fun FragmentManager.isFragmentVisible(tag: String): Boolean {
         return this.findFragmentByTag(tag)?.isVisible == true
     }
 
@@ -57,7 +90,7 @@ abstract class BaseCoreActivity : AppCompatActivity() {
         delayMillis: Long
     ) {
         if (CardStackFragment.FRAGMENT_ID != newTag) {
-            ivUpButton?.setImageResource(R.drawable.ic_arrow_back)
+            btnUpButton?.setImageResource(R.drawable.ic_arrow_back)
         }
 
         if (delayMillis > 0) {

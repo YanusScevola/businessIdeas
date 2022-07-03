@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -26,7 +25,8 @@ import com.example.myapplication.utils.AnimUtils
 class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedListener, DragStateListener {
     private var binding: ActivityNavigateDrawerBinding? = null
     private var slidingRootNav: SlidingRootNav? = null
-    private var ivUpButton: ImageView? = null
+    private var btnUpButton: ImageView? = null
+    private var btnAddNewCard: ImageView? = null
 
     private var fragmentManager: FragmentManager? = null
     private var cardStackFragment: CardStackFragment? = null
@@ -45,26 +45,31 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
         setSupportActionBar(binding?.toolbarContainer?.toolbar)
 
         fragmentManager = supportFragmentManager
-        ivUpButton = binding?.toolbarContainer?.ivUpButton
+        btnUpButton = binding?.toolbarContainer?.btnUpButton
+        btnAddNewCard = binding?.toolbarContainer?.btnAddNewCard
 
         cardStackFragment = CardStackFragment.newInstance()
         cardCreateFragment = CreateCardFragment.newInstance()
 
-        initBaseActivity(ivUpButton as View)
+        initBaseActivity(
+            upButton = btnUpButton,
+            addNewCard = btnAddNewCard
+        )
+
         initDrawer(savedInstanceState)
 
     }
 
-    override fun onBackButtonOnClick(upButton: ImageView?, isOnBackPressed: Boolean) {
+    override fun onBackButtonOnClick(view: ImageView?, isOnBackPressed: Boolean) {
         when (true) {
-            fragmentManager?.getFragmentVisibility(CreateCardFragment.FRAGMENT_ID) -> {
+            fragmentManager?.isFragmentVisible(CreateCardFragment.FRAGMENT_ID) -> {
                 fragmentManager?.popBackStack()
-                ivUpButton?.setImageResource(R.drawable.ic_menu)
+                btnUpButton?.setImageResource(R.drawable.ic_menu)
             }
 
-            fragmentManager?.getFragmentVisibility(DetailCardFragment.FRAGMENT_ID) -> {
+            fragmentManager?.isFragmentVisible(DetailCardFragment.FRAGMENT_ID) -> {
                 fragmentManager?.popBackStack()
-                ivUpButton?.setImageResource(R.drawable.ic_menu)
+                btnUpButton?.setImageResource(R.drawable.ic_menu)
 
                 val easyFlipView = cardStackFragment?.getCurrentCardEasyFlipView()
                 val cardStackView = findViewById<LinearLayout>(R.id.card_stack_view_container)
@@ -96,6 +101,28 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
 
     }
 
+    //Обрабатываею нажатия по кнопкам в Toolbar
+    override fun onClickToolbarButton(id: Int, view: View?, isClicked: Boolean) {
+        when(id){
+
+            R.id.action_settings -> {
+
+            }
+
+            R.id.btn_add_new_card -> {
+                fragmentManager?.startFragment(
+                    fragment = cardCreateFragment!!,
+                    newTag = CreateCardFragment.FRAGMENT_ID,
+                    fragmentContainerId = R.id.fragment_container,
+                    animation = AnimUtils.AnimFragmentTransaction(R.anim.anim_slide_down, 0, 0, R.anim.anim_slide_up),
+                    isReplace = false,
+                    delayMillis = 0
+                )
+            }
+
+        }
+    }
+
     //Обробатываю выбор елемента из DrawerMenu
     override fun onDrawerItemSelected(position: Int) {
         if (position == POS_LOGOUT) {
@@ -122,34 +149,10 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
 
     override fun onDragEnd(isMenuOpened: Boolean) {
         if (slidingRootNav?.isMenuClosed != true) {
-            ivUpButton?.setImageResource(R.drawable.ic_arrow_back)
+            btnUpButton?.setImageResource(R.drawable.ic_arrow_back)
         } else {
-            ivUpButton?.setImageResource(R.drawable.ic_menu)
+            btnUpButton?.setImageResource(R.drawable.ic_menu)
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val itemId = item.itemId
-        when (itemId) {
-            R.id.add_new_card -> {
-                fragmentManager?.startFragment(
-                    fragment = cardCreateFragment!!,
-                    newTag = CreateCardFragment.FRAGMENT_ID,
-                    fragmentContainerId = R.id.fragment_container,
-                    animation = AnimUtils.AnimFragmentTransaction(R.anim.anim_slide_down, 0, 0, R.anim.anim_slide_up),
-                    isReplace = false,
-                    delayMillis = 0
-                )
-
-            }
-
-            R.id.action_settings -> {
-
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
-        return true
     }
 
     override fun onDestroy() {
@@ -171,7 +174,7 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
         return simpleItem
     }
 
-    //Здесь задается название каждого елеменетна в менюшки Drawer.
+    //Задается название каждого елеменетна в менюшки Drawer.
     private fun getItemsTitleForDrawerMenu(position: Int): String {
         return arrayOf(
             "Dashboard",

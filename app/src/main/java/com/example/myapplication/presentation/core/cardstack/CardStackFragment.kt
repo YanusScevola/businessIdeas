@@ -2,7 +2,6 @@ package com.example.myapplication.presentation.core.cardstack
 
 
 import android.os.Bundle
-import android.transition.*
 import android.util.Log
 import android.view.*
 import android.view.animation.*
@@ -60,7 +59,7 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
         super.onViewCreated(view, savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        ivUpButton = requireActivity().findViewById(R.id.iv_upButton)
+        ivUpButton = requireActivity().findViewById(R.id.btn_upButton)
         cardStackView = view.findViewById(R.id.card_stack_view)
 
         manager = CardStackLayoutManager(requireContext(), this)
