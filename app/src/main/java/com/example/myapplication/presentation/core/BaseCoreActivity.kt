@@ -51,6 +51,7 @@ abstract class BaseCoreActivity : AppCompatActivity() {
     fun FragmentManager.startFragment(
         fragment: Fragment,
         newTag: String,
+        fragmentContainerId: Int,
         animation: AnimUtils.AnimFragmentTransaction?,
         isReplace: Boolean,
         delayMillis: Long
@@ -65,13 +66,13 @@ abstract class BaseCoreActivity : AppCompatActivity() {
                     this.beginTransaction()
                         .setCustomAnimations(animation?.enter ?: 0, animation?.exit ?: 0, animation?.popEnter ?: 0, animation?.popExit ?: 0)
                         .addToBackStack(newTag)
-                        .replace(R.id.fragment_container, fragment, newTag)
+                        .replace(fragmentContainerId, fragment, newTag)
                         .commit()
                 } else {
                     this.beginTransaction()
                         .setCustomAnimations(animation?.enter ?: 0, animation?.exit ?: 0, animation?.popEnter ?: 0, animation?.popExit ?: 0)
                         .addToBackStack(newTag)
-                        .add(R.id.fragment_container, fragment, newTag)
+                        .add(fragmentContainerId, fragment, newTag)
                         .commit()
                 }
             }, delayMillis)
@@ -81,13 +82,13 @@ abstract class BaseCoreActivity : AppCompatActivity() {
                 this.beginTransaction()
                     .setCustomAnimations(animation?.enter ?: 0, animation?.exit ?: 0, animation?.popEnter ?: 0, animation?.popExit ?: 0)
                     .addToBackStack(newTag)
-                    .replace(R.id.fragment_container, fragment, newTag)
+                    .replace(fragmentContainerId, fragment, newTag)
                     .commit()
             } else {
                 this.beginTransaction()
                     .setCustomAnimations(animation?.enter ?: 0, animation?.exit ?: 0, animation?.popEnter ?: 0, animation?.popExit ?: 0)
                     .addToBackStack(newTag)
-                    .add(R.id.fragment_container, fragment, newTag)
+                    .add(fragmentContainerId, fragment, newTag)
                     .commit()
             }
         }

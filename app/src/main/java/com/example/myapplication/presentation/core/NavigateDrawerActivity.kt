@@ -6,7 +6,12 @@ import android.os.Handler
 import android.os.Looper
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -65,15 +70,18 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
                 fragmentManager?.popBackStack()
                 ivUpButton?.setImageResource(R.drawable.ic_menu)
 
-                val easyFlipView = cardStackFragment?.getCurrentCardViewHolderList()
-                val cardStackView = findViewById<CardStackView>(R.id.card_stack_view)
+                val easyFlipView = cardStackFragment?.getCurrentCardEasyFlipView()
+                val cardStackView = findViewById<LinearLayout>(R.id.card_stack_view_container)
 
-                AnimUtils.startAnimation(cardStackView as View, R.anim.anim_zum_close)
+                AnimUtils.startAnimationCardOpenDetail(cardStackFragment?.view as ViewGroup, cardStackView, cardStackFragment!!.getCurrentCardEasyFlipView()?.findViewById(R.id.card_view_back), true)
 
                 Handler(Looper.getMainLooper()).postDelayed({
+                    cardStackFragment?.getCardAdapter()?.notifyItemRangeChanged(cardStackFragment!!.getCurrentCardPosition(), (cardStackFragment!!.getCurrentCardPosition() + 3))
+
                     easyFlipView?.setFlipTypeFromBack()
                     easyFlipView?.flipTheView()
-                }, 400)
+                    easyFlipView?.setFlipTypeFromFront()
+                }, 300)
 
             }
 
@@ -104,6 +112,7 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
             fragmentManager?.startFragment(
                 fragment = cardStackFragment!!,
                 newTag = CardStackFragment.FRAGMENT_ID,
+                fragmentContainerId = R.id.fragment_container,
                 animation = null,
                 isReplace = true,
                 delayMillis = 0
@@ -131,10 +140,12 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
                 fragmentManager?.startFragment(
                     fragment = cardCreateFragment!!,
                     newTag = CreateCardFragment.FRAGMENT_ID,
+                    fragmentContainerId = R.id.fragment_container,
                     animation = AnimUtils.AnimFragmentTransaction(R.anim.anim_slide_down, 0, 0, R.anim.anim_slide_up),
                     isReplace = false,
                     delayMillis = 0
                 )
+
             }
 
             R.id.action_settings -> {

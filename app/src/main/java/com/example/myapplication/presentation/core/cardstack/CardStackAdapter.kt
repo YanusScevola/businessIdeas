@@ -63,25 +63,21 @@ class CardStackAdapter(
             onClickListener.onFlipCard(flipView, newCurrentSide.toString())
         }
 
-        Log.i("tag", "1position: $position")
-        holder.easyFlipView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                if (Build.VERSION.SDK_INT > 16) {
-                    holder.easyFlipView.viewTreeObserver.removeOnGlobalLayoutListener(this);
-                } else {
-                    holder.easyFlipView.viewTreeObserver.removeGlobalOnLayoutListener(this);
-                }
-                Log.i("tag", "2position: $position")
+//        holder.easyFlipView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+//            override fun onGlobalLayout() {
+//                if (Build.VERSION.SDK_INT > 16) {
+//                    holder.easyFlipView.viewTreeObserver.removeOnGlobalLayoutListener(this);
+//                } else {
+//                    holder.easyFlipView.viewTreeObserver.removeGlobalOnLayoutListener(this);
+//                }
+//                Log.i("tag", "2position: $position")
 
 
                 GlobalScope.launch {
-                    delay(450)
-                    Log.i("tag", "3position: ${position}")
+                    delay(800)
                     activity.runOnUiThread {
-
                         holder.containerInfo.visibility = View.VISIBLE
                         val bitmap = ScreenUtils.getScreenShotFromView(holder.easyFlipView)
-//                      ScreenUtils.saveMediaToStorage(activity, bitmap!!)
                         holder.image.setImageBitmap(bitmap)
                         holder.containerInfo.visibility = View.GONE
                     }
@@ -90,11 +86,8 @@ class CardStackAdapter(
 //                holder.easyFlipView.viewTreeObserver.removeGlobalOnLayoutListener(listener)
 //                holder.easyFlipView.getViewTreeObserver().addOnGlobalLayoutListener(this);
 
-            }
-
-        })
-
-
+//            }
+//        })
     }
 
     override fun getItemCount(): Int {

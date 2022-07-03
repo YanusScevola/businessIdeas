@@ -1,22 +1,31 @@
 package com.example.myapplication.presentation.core.cardstack
 
 
-import android.os.*
+import android.animation.AnimatorSet
+import android.animation.ValueAnimator
+import android.os.Bundle
+import android.transition.*
 import android.util.Log
 import android.view.*
 import android.view.animation.*
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.libraries.cardview.*
+import com.example.myapplication.libraries.roundedimageview.RoundedImageView
 import com.example.myapplication.model.Spot
 import com.example.myapplication.presentation.core.BaseCoreFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.example.myapplication.utils.AnimUtils
+import com.example.myapplication.utils.ScreenUtils
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
@@ -34,7 +43,7 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     private var param1: String? = null
     private var param2: String? = null
     private var ivUpButton: ImageView? = null
-
+    private var currentPosition: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +96,17 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     }
 
     override fun onCardAppeared(view: View, position: Int) {
+        currentPosition = position
+        val card = getCardFlipViewByPosition(position)
+        val containerInfo = card?.findViewById<ConstraintLayout>(R.id.container_info)
+        val cardImage = card?.findViewById<RoundedImageView>(R.id.item_image)
+
+//        activity?.runOnUiThread {
+//            containerInfo?.visibility = View.VISIBLE
+//            val bitmap = ScreenUtils.getScreenShotFromView(card!!)
+//            cardImage?.setImageBitmap(bitmap)
+//            containerInfo?.visibility = View.GONE
+//        }
     }
 
     override fun onCardDisappeared(view: View, position: Int) {
@@ -108,15 +128,23 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
 
     override fun onFlipCard(flipView: EasyFlipView, flipSide: String) {
         if (flipSide == "BACK_SIDE") {
-            AnimUtils.startAnimation(cardStackView as View, R.anim.anim_zum_open)
-
             parentFragmentManager.startFragment(
                 fragment = DetailCardFragment(),
                 newTag = DetailCardFragment.FRAGMENT_ID,
+                fragmentContainerId = R.id.fragment_container,
                 animation = null,
                 isReplace = false,
-                delayMillis = 300
+                delayMillis = 500
             )
+
+
+            val cardStackView = requireActivity().findViewById<LinearLayout>(R.id.card_stack_view_container)
+            AnimUtils.startAnimationCardOpenDetail(view as ViewGroup , cardStackView, flipView.findViewById(R.id.card_view_back), false)
+
+        }else{
+//            adapter?.notifyItemRangeChanged(currentPosition, (currentPosition + 2))
+//            val cardStackView = requireActivity().findViewById<LinearLayout>(R.id.card_stack_view_container)
+//            AnimUtils.startAnimationCardOpenDetail(view as ViewGroup, cardStackView, flipView.findViewById(R.id.card_view_back), true)
 
         }
 
@@ -310,8 +338,16 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
         return adapter?.getCardEasyFlipViewByPosition(position)
     }
 
-    fun getCurrentCardViewHolderList(): EasyFlipView? {
+    fun getCurrentCardEasyFlipView(): EasyFlipView? {
         return adapter?.getCurrentCardViewHolderList()
+    }
+
+    fun getCardAdapter(): CardStackAdapter? {
+        return adapter
+    }
+
+    fun getCurrentCardPosition(): Int {
+        return currentPosition
     }
 
 
