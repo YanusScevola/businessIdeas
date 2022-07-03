@@ -7,18 +7,14 @@ import android.os.Looper
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityNavigateDrawerBinding
-import com.example.myapplication.libraries.cardview.CardStackView
 import com.example.myapplication.libraries.drawerview.*
 import com.example.myapplication.libraries.drawerview.callback.DragStateListener
 import com.example.myapplication.presentation.core.cardCreate.CreateCardFragment
@@ -77,7 +73,6 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     cardStackFragment?.getCardAdapter()?.notifyItemRangeChanged(cardStackFragment!!.getCurrentCardPosition(), (cardStackFragment!!.getCurrentCardPosition() + 3))
-
                     easyFlipView?.setFlipTypeFromBack()
                     easyFlipView?.flipTheView()
                     easyFlipView?.setFlipTypeFromFront()

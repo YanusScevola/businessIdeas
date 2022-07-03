@@ -1,14 +1,11 @@
 package com.example.myapplication.presentation.core.cardstack
 
 
-import android.animation.AnimatorSet
-import android.animation.ValueAnimator
 import android.os.Bundle
 import android.transition.*
 import android.util.Log
 import android.view.*
 import android.view.animation.*
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -17,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.libraries.cardview.*
 import com.example.myapplication.libraries.roundedimageview.RoundedImageView
@@ -25,7 +21,6 @@ import com.example.myapplication.model.Spot
 import com.example.myapplication.presentation.core.BaseCoreFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.example.myapplication.utils.AnimUtils
-import com.example.myapplication.utils.ScreenUtils
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
@@ -134,17 +129,12 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
                 fragmentContainerId = R.id.fragment_container,
                 animation = null,
                 isReplace = false,
-                delayMillis = 500
+                delayMillis = 400
             )
-
-
             val cardStackView = requireActivity().findViewById<LinearLayout>(R.id.card_stack_view_container)
             AnimUtils.startAnimationCardOpenDetail(view as ViewGroup , cardStackView, flipView.findViewById(R.id.card_view_back), false)
 
         }else{
-//            adapter?.notifyItemRangeChanged(currentPosition, (currentPosition + 2))
-//            val cardStackView = requireActivity().findViewById<LinearLayout>(R.id.card_stack_view_container)
-//            AnimUtils.startAnimationCardOpenDetail(view as ViewGroup, cardStackView, flipView.findViewById(R.id.card_view_back), true)
 
         }
 
