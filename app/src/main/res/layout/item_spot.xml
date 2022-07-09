@@ -44,7 +44,7 @@
             android:layout_marginBottom="30dp"
             android:background="?attr/selectableItemBackground"
             android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/black"
             app:cardCornerRadius="8dp"
             app:cardPreventCornerOverlap="false"
             app:cardElevation="0dp"

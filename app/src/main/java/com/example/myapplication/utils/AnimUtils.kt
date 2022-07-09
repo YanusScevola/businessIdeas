@@ -1,5 +1,8 @@
 package com.example.myapplication.utils
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.TransitionDrawable
 import android.os.Handler
 import android.os.Looper
 import android.transition.TransitionManager
@@ -27,41 +30,21 @@ class AnimUtils {
             view.startAnimation(slideUp)
         }
 
-
-        fun startAnimationUpButton(imageView: ImageView, isRevers: Boolean) {
-            if (isRevers) {
-                startAnimation(imageView, R.anim.anim_slide_to_down)
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    startAnimation(imageView, R.anim.anim_slide_to_up)
-                }, 450)
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    imageView.setImageResource(R.drawable.ic_menu)
-                }, 450)
-            } else {
-
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    startAnimation(imageView, R.anim.anim_slide_to_down)
-                }, 300)
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    imageView.visibility = View.GONE
-                }, 450)
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    imageView.visibility = View.VISIBLE
-                    startAnimation(imageView, R.anim.anim_slide_to_up)
-                }, 850)
-
-//
-//                Handler(Looper.getMainLooper()).postDelayed({
-//                    imageView.setImageResource(R.drawable.ic_menu)
-//                }, 450)
-            }
-
+        fun startAnimationBackgroundMadeTransparent(view: View) {
+            val color: Array<ColorDrawable> = arrayOf(ColorDrawable(Color.TRANSPARENT), ColorDrawable(Color.WHITE))
+            val trans = TransitionDrawable(color)
+            view.setBackgroundDrawable(trans)
+            trans.startTransition(500)
         }
+
+        fun startAnimationBackgroundMadeNoTransparent(view: View) {
+            val color: Array<ColorDrawable> = arrayOf(ColorDrawable(Color.WHITE), ColorDrawable(Color.TRANSPARENT), ColorDrawable(Color.TRANSPARENT))
+            val trans = TransitionDrawable(color)
+            view.background = trans
+            trans.startTransition(300)
+        }
+
+
 
         fun startAnimationCardOpenDetail(
             fragmentView: ViewGroup,
@@ -89,8 +72,8 @@ class AnimUtils {
 
             if (isFrontSide) {
                 stackViewContainerParam.setMargins(0, 0, 0, 0);
-                stackViewParam.setMargins(80, 0, 80, 0);
-                cardViewParam.setMargins(25, 95, 25, 95);
+                stackViewParam.setMargins(70, 0, 70, 0);
+                cardViewParam.setMargins(0, 95, 0, 95);
                 stackViewParam.weight = 100f
                 cardView?.radius = 25f
 

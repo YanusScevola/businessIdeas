@@ -2,6 +2,7 @@ package com.example.myapplication.presentation.core
 
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainer
@@ -70,6 +71,5 @@ open class BaseCoreFragment : Fragment() {
         }
 
     }
-
 
 }

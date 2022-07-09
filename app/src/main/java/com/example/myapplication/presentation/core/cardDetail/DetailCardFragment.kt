@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
+import com.example.myapplication.presentation.core.cardstack.CardStackFragment
+
 //
 //private const val ARG_PARAM1 = "param1"
 //private const val ARG_PARAM2 = "param2"
@@ -14,9 +16,13 @@ import com.example.myapplication.R
 class DetailCardFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
+    private var cardStackFragment: CardStackFragment? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        cardStackFragment = parentFragmentManager.findFragmentByTag(CardStackFragment.FRAGMENT_ID) as CardStackFragment
+        cardStackFragment?.setCardStackEnabled(false)
 
         arguments?.let {
 //            param1 = it.getString(ARG_PARAM1)
@@ -35,7 +41,7 @@ class DetailCardFragment : Fragment() {
         const val FRAGMENT_ID = "DetailCardFragment"
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             DetailCardFragment().apply {
                 arguments = Bundle().apply {
 //                    putString(ARG_PARAM1, param1)

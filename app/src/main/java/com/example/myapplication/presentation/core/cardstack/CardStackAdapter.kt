@@ -26,9 +26,10 @@ class CardStackAdapter(
     private var activity: Activity,
     private var spots: List<Spot> = emptyList(),
     private val onClickListener: OnClickListener
+
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
-    var cardViewHolderList = mutableListOf<ViewHolder>()
-    var currentCardEasyFlipView: EasyFlipView? = null
+    private var cardViewHolderList = mutableListOf<ViewHolder>()
+    private var currentCardEasyFlipView: EasyFlipView? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -42,10 +43,13 @@ class CardStackAdapter(
 //        holder.city.text = Html.fromHtml("<p style=\"text-align: center\">centered text example</p>", HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
         holder.name.text = "${spot.name}"
         cardViewHolderList.add(holder)
-
         Glide.with(holder.image)
             .load(spot.url)
             .into(holder.image)
+
+        if (position >= 2){
+            currentCardEasyFlipView = cardViewHolderList[position - 2].easyFlipView
+        }
 
         holder.itemView.setOnClickListener { v ->
             Toast.makeText(v.context, spot.name, Toast.LENGTH_SHORT).show()
@@ -53,7 +57,6 @@ class CardStackAdapter(
 
         holder.easyFlipView.setOnTouchListener { view, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_UP) {
-                currentCardEasyFlipView = holder.easyFlipView
                 onClickListener.onClickCard(holder.easyFlipView)
             }
             return@setOnTouchListener true
@@ -61,6 +64,7 @@ class CardStackAdapter(
 
         holder.easyFlipView.setOnFlipListener { flipView, newCurrentSide ->
             onClickListener.onFlipCard(flipView, newCurrentSide.toString())
+            currentCardEasyFlipView = flipView
         }
 
 //        holder.easyFlipView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -73,7 +77,7 @@ class CardStackAdapter(
 //                Log.i("tag", "2position: $position")
 
 
-                GlobalScope.launch {
+               val job = GlobalScope.launch {
                     delay(800)
                     activity.runOnUiThread {
                         holder.containerInfo.visibility = View.VISIBLE
@@ -83,12 +87,9 @@ class CardStackAdapter(
                     }
                 }
 
-//                holder.easyFlipView.viewTreeObserver.removeGlobalOnLayoutListener(listener)
-//                holder.easyFlipView.getViewTreeObserver().addOnGlobalLayoutListener(this);
-
-//            }
+            }
 //        })
-    }
+//    }
 
     override fun getItemCount(): Int {
         return spots.size
@@ -110,23 +111,9 @@ class CardStackAdapter(
         return cardViewHolderList[position].easyFlipView
     }
 
-    fun getCurrentCardViewHolderList(): EasyFlipView {
+    fun getCurrentEasyFlipView(): EasyFlipView {
         return currentCardEasyFlipView!!
     }
-
-//    suspend fun setScreenShot(holder: CardStackAdapter.ViewHolder): Bitmap? {
-//        return suspendCoroutine { continuation ->
-//            activity.runOnUiThread {
-//                holder.containerInfo.visibility = View.VISIBLE
-//                val bitmap = ScreenUtils.getScreenShotFromView(holder.easyFlipView)
-////                      ScreenUtils.saveMediaToStorage(activity, bitmap!!)
-////                holder.image.setImageBitmap(bitmap)
-//                holder.containerInfo.visibility = View.GONE
-//                continuation.resume(bitmap)
-//            }
-//
-//        }
-//    }
 
     class ViewHolder(onClickListener: OnClickListener, view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.item_name)

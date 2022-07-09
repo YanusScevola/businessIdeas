@@ -31,6 +31,7 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
     private var fragmentManager: FragmentManager? = null
     private var cardStackFragment: CardStackFragment? = null
     private var cardCreateFragment: CreateCardFragment? = null
+    private var detailCreateFragment: DetailCardFragment? = null
 
     private val POS_DASHBOARD = 0
     private val POS_ACCOUNT = 1
@@ -60,21 +61,31 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
 
     }
 
-    override fun onBackButtonOnClick(view: ImageView?, isOnBackPressed: Boolean) {
+    override fun onClickBackButton(view: ImageView?, isOnBackPressed: Boolean) {
+        val detailCardFragment = fragmentManager?.findFragmentByTag(CardStackFragment.FRAGMENT_ID)
+        val easyFlipView = cardStackFragment?.getCurrentCardEasyFlipView()
+        cardStackFragment?.setCardStackEnabled(true)
+
         when (true) {
             fragmentManager?.isFragmentVisible(CreateCardFragment.FRAGMENT_ID) -> {
                 fragmentManager?.popBackStack()
+                cardCreateFragment?.onDestroy()
+
                 btnUpButton?.setImageResource(R.drawable.ic_menu)
+                btnAddNewCard?.visibility = View.VISIBLE
+                btnAddNewCard?.isEnabled = true
+
+                AnimUtils.startAnimation(btnAddNewCard!!, R.anim.anim_slide_from_down_to_center)
             }
 
             fragmentManager?.isFragmentVisible(DetailCardFragment.FRAGMENT_ID) -> {
                 fragmentManager?.popBackStack()
+                detailCardFragment?.onDestroy()
+
                 btnUpButton?.setImageResource(R.drawable.ic_menu)
 
-                val easyFlipView = cardStackFragment?.getCurrentCardEasyFlipView()
-                val cardStackView = findViewById<LinearLayout>(R.id.card_stack_view_container)
-
-                AnimUtils.startAnimationCardOpenDetail(cardStackFragment?.view as ViewGroup, cardStackView, cardStackFragment!!.getCurrentCardEasyFlipView()?.findViewById(R.id.card_view_back), true)
+                val cardStackViewContainer = findViewById<LinearLayout>(R.id.card_stack_view_container)
+                AnimUtils.startAnimationCardOpenDetail(cardStackFragment?.view as ViewGroup, cardStackViewContainer, cardStackFragment!!.getCurrentCardEasyFlipView()?.findViewById(R.id.card_view_back), true)
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     cardStackFragment?.getCardAdapter()?.notifyItemRangeChanged(cardStackFragment!!.getCurrentCardPosition(), (cardStackFragment!!.getCurrentCardPosition() + 3))
@@ -103,13 +114,19 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
 
     //Обрабатываею нажатия по кнопкам в Toolbar
     override fun onClickToolbarButton(id: Int, view: View?, isClicked: Boolean) {
-        when(id){
+        when (id) {
 
             R.id.action_settings -> {
 
             }
 
             R.id.btn_add_new_card -> {
+                view?.isEnabled = false
+                Handler(Looper.getMainLooper()).postDelayed({
+                    AnimUtils.startAnimation(view!!, R.anim.anim_slide_from_center_to_down)
+                    view.visibility = View.GONE
+                }, 200)
+
                 fragmentManager?.startFragment(
                     fragment = cardCreateFragment!!,
                     newTag = CreateCardFragment.FRAGMENT_ID,

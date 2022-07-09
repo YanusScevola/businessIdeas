@@ -19,11 +19,11 @@ abstract class BaseCoreActivity : AppCompatActivity() {
     private var btnUpButton: ImageView? = null
     private var btnAddNewCard: ImageView? = null
 
-    abstract fun onBackButtonOnClick(view: ImageView?, isOnBackPressed: Boolean)
+    abstract fun onClickBackButton(view: ImageView?, isOnBackPressed: Boolean)
     abstract fun onClickToolbarButton(id: Int, view: View?, isClicked: Boolean)
 
     override fun onBackPressed() {
-        onBackButtonOnClick(btnUpButton, true)
+        onClickBackButton(btnUpButton, true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -60,7 +60,7 @@ abstract class BaseCoreActivity : AppCompatActivity() {
 
     private fun handleUpButtonListener(btn: ImageView?) {
         btn?.setOnClickListener {
-            onBackButtonOnClick(it as ImageView, false)
+            onClickBackButton(it as ImageView, false)
         }
     }
 

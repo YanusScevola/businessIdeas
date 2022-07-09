@@ -95,12 +95,6 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
         val containerInfo = card?.findViewById<ConstraintLayout>(R.id.container_info)
         val cardImage = card?.findViewById<RoundedImageView>(R.id.item_image)
 
-//        activity?.runOnUiThread {
-//            containerInfo?.visibility = View.VISIBLE
-//            val bitmap = ScreenUtils.getScreenShotFromView(card!!)
-//            cardImage?.setImageBitmap(bitmap)
-//            containerInfo?.visibility = View.GONE
-//        }
     }
 
     override fun onCardDisappeared(view: View, position: Int) {
@@ -323,12 +317,22 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
         return spots
     }
 
+    fun setCardStackEnabled(isEnabled: Boolean) {
+        manager?.setCanScrollHorizontal(isEnabled)
+        manager?.setCanScrollVertical(isEnabled)
+        getCurrentCardEasyFlipView()?.isEnabled = isEnabled
+    }
+
+    fun getCardStackView(): CardStackView? {
+        return cardStackView
+    }
+
     fun getCardFlipViewByPosition(position: Int): EasyFlipView? {
         return adapter?.getCardEasyFlipViewByPosition(position)
     }
 
     fun getCurrentCardEasyFlipView(): EasyFlipView? {
-        return adapter?.getCurrentCardViewHolderList()
+        return adapter?.getCurrentEasyFlipView()
     }
 
     fun getCardAdapter(): CardStackAdapter? {
@@ -338,7 +342,6 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     fun getCurrentCardPosition(): Int {
         return currentPosition
     }
-
 
     companion object {
         const val FRAGMENT_ID = "CardStackFragment"
