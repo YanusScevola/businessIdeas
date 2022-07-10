@@ -33,7 +33,8 @@ class CardStackAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(onClickListener, inflater.inflate(R.layout.item_spot, parent, false))
+        val view = inflater.inflate(R.layout.item_spot, parent, false)
+        return ViewHolder(onClickListener, view)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -111,13 +112,13 @@ class CardStackAdapter(
         return cardViewHolderList[position].easyFlipView
     }
 
-    fun getCurrentEasyFlipView(): EasyFlipView {
-        return currentCardEasyFlipView!!
+    fun getCurrentEasyFlipView(): EasyFlipView? {
+        return currentCardEasyFlipView
     }
 
     class ViewHolder(onClickListener: OnClickListener, view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.item_name)
-        //        var city: TextView = view.findViewById(R.id.tv_donat_invest)
+        //var city: TextView = view.findViewById(R.id.tv_donat_invest)
         var image: ImageView = view.findViewById(R.id.item_image)
         val easyFlipView: EasyFlipView = view.findViewById(R.id.easy_flip_view)
         val containerInfo: ConstraintLayout = view.findViewById(R.id.container_info)

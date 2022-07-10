@@ -122,8 +122,10 @@ class NavigateDrawerActivity : BaseCoreActivity(), DrawerAdapter.OnItemSelectedL
 
             R.id.btn_add_new_card -> {
                 view?.isEnabled = false
+//                AnimUtils.startAnimation(view!!, R.anim.anim_rotation)
+
                 Handler(Looper.getMainLooper()).postDelayed({
-                    AnimUtils.startAnimation(view!!, R.anim.anim_slide_from_center_to_down)
+                    AnimUtils.startAnimation(view!!, R.anim.anim_rotation_slide_from_center_to_down)
                     view.visibility = View.GONE
                 }, 200)
 

@@ -1,6 +1,8 @@
 package com.example.myapplication.presentation.core.cardDetail
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.presentation.core.cardstack.CardStackFragment
+import com.facebook.shimmer.ShimmerFrameLayout
 
 //
 //private const val ARG_PARAM1 = "param1"
@@ -25,8 +28,6 @@ class DetailCardFragment : Fragment() {
         cardStackFragment?.setCardStackEnabled(false)
 
         arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -35,6 +36,13 @@ class DetailCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_detali_card, container, false)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 
     companion object {

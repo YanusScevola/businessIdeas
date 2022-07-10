@@ -2,6 +2,8 @@ package com.example.myapplication.presentation.core.cardstack
 
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.*
 import android.view.animation.*
@@ -10,6 +12,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
@@ -20,6 +25,7 @@ import com.example.myapplication.model.Spot
 import com.example.myapplication.presentation.core.BaseCoreFragment
 import com.example.myapplication.presentation.core.cardDetail.DetailCardFragment
 import com.example.myapplication.utils.AnimUtils
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.wajahatkarim3.easyflipview.EasyFlipView
 
 
@@ -61,6 +67,8 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         ivUpButton = requireActivity().findViewById(R.id.btn_upButton)
         cardStackView = view.findViewById(R.id.card_stack_view)
+
+
 
         manager = CardStackLayoutManager(requireContext(), this)
         adapter = CardStackAdapter(requireActivity(), createSpots(), this)
@@ -115,19 +123,28 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     }
 
     override fun onFlipCard(flipView: EasyFlipView, flipSide: String) {
+
+
         if (flipSide == "BACK_SIDE") {
+           val s = DetailCardFragment()
             parentFragmentManager.startFragment(
-                fragment = DetailCardFragment(),
+                fragment = s,
                 newTag = DetailCardFragment.FRAGMENT_ID,
                 fragmentContainerId = R.id.fragment_container,
                 animation = null,
                 isReplace = false,
                 delayMillis = 400
             )
-            val cardStackView = requireActivity().findViewById<LinearLayout>(R.id.card_stack_view_container)
-            AnimUtils.startAnimationCardOpenDetail(view as ViewGroup , cardStackView, flipView.findViewById(R.id.card_view_back), false)
 
-        }else{
+            Handler(Looper.getMainLooper()).postDelayed({
+                s.view?.findViewById<ShimmerFrameLayout>(R.id.shimmer_container)?.visibility = View.GONE
+            },1000)
+
+            val cardStackView = requireActivity().findViewById<LinearLayout>(R.id.card_stack_view_container)
+            AnimUtils.startAnimationCardOpenDetail(view as ViewGroup, cardStackView, flipView.findViewById(R.id.card_view_back), false)
+
+
+        } else {
 
         }
 
