@@ -123,12 +123,9 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
     }
 
     override fun onFlipCard(flipView: EasyFlipView, flipSide: String) {
-
-
         if (flipSide == "BACK_SIDE") {
-           val s = DetailCardFragment()
             parentFragmentManager.startFragment(
-                fragment = s,
+                fragment = DetailCardFragment(),
                 newTag = DetailCardFragment.FRAGMENT_ID,
                 fragmentContainerId = R.id.fragment_container,
                 animation = null,
@@ -136,18 +133,10 @@ class CardStackFragment : BaseCoreFragment(), CardStackListener, CardStackAdapte
                 delayMillis = 400
             )
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                s.view?.findViewById<ShimmerFrameLayout>(R.id.shimmer_container)?.visibility = View.GONE
-            },1000)
-
             val cardStackView = requireActivity().findViewById<LinearLayout>(R.id.card_stack_view_container)
             AnimUtils.startAnimationCardOpenDetail(view as ViewGroup, cardStackView, flipView.findViewById(R.id.card_view_back), false)
 
-
-        } else {
-
         }
-
     }
 
     override fun onClickCard(flipView: EasyFlipView) {

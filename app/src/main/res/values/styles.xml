@@ -2,13 +2,20 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/color_green</item>
-        <item name="colorPrimaryDark">#0E4FCD</item>
-        <item name="colorAccent">@color/colorAccent</item>
+<!--        <item name="colorPrimary">@color/color_green</item>-->
+<!--        <item name="colorPrimaryDark">#0E4FCD</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+
+        <item name="windowActionBar">false</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
     </style>
 
     <style name="ToolAppTheme" parent="AppTheme">
         <item name="android:textColorSecondary">#51745E</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="windowActionBarOverlay">true</item>
 
     </style>
 

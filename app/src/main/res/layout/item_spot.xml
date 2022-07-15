@@ -5,7 +5,9 @@
     android:id="@+id/easy_flip_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="bottom"
     android:animationCache="true"
+    android:background="@drawable/transparent_background"
     app:autoFlipBack="false"
     app:flipDuration="750"
     app:flipEnabled="true"
@@ -18,426 +20,430 @@
         android:id="@+id/card_view_back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="22dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="40dp"
         android:background="?attr/selectableItemBackground"
         android:foreground="?attr/selectableItemBackground"
         android:visibility="visible"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="false">
-
-
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.example.myapplication.presentation.core.cardDetail.DetailCardFragment" />
-
-
-
-    </androidx.cardview.widget.CardView>
-
-    <!-- Front Layout Goes Here -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_front"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="29dp"
-        android:layout_marginBottom="30dp"
-        android:background="?attr/selectableItemBackground"
-        android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/black"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false">
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.myapplication.presentation.core.cardDetail.DetailCardFragment" />
 
-        <com.example.myapplication.libraries.roundedimageview.RoundedImageView
-            android:id="@+id/item_image"
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Front Layout Goes Here -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_front"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            app:riv_corner_radius="8dp"
-            app:riv_corner_radius_bottom_left="7dp"
-            app:riv_corner_radius_bottom_right="7dp" />
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="false">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container_info"
-            android:layout_width="match_parent"
-            android:layout_height="222dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/gradation_black"
-            android:orientation="vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="16dp"
-            android:visibility="visible">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/black"
-                android:src="@drawable/lable"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/item_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:autoSizeMaxTextSize="100sp"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:maxLines="1"
-                android:shadowColor="#000000"
-                android:shadowDx="2.5"
-                android:shadowDy="2.3"
-                android:shadowRadius="2.6"
-                android:textColor="@android:color/white"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/profile_image"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:targetApi="o" />
+            <com.example.myapplication.libraries.roundedimageview.RoundedImageView
+                android:id="@+id/item_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="8dp"
+                app:riv_corner_radius_bottom_left="7dp"
+                app:riv_corner_radius_bottom_right="7dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/container_business_info"
+                android:id="@+id/container_info"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="222dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/gradation_black"
                 android:orientation="vertical"
-                android:paddingTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_name">
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="16dp"
+                android:visibility="visible">
 
-
-                <TextView
-                    android:id="@+id/tv_business_cost_zero"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:text="0$"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/black"
+                    android:src="@drawable/lable"
+                    app:civ_border_color="#FF000000"
+                    app:civ_border_width="2dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/item_city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Сумма инвестиций"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_business_cost_sum"
+                    android:id="@+id/item_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="50.000$"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
-                    android:id="@+id/textRoundCornerProgressBar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_city"
-                    app:rcBackgroundColor="#0A000000"
-                    app:rcMax="50000"
-                    app:rcProgress="30000"
-                    app:rcProgressColor="#21B629"
-                    app:rcRadius="80dp"
-                    app:rcReverse="false"
-                    app:rcSecondaryProgress="50000"
-                    app:rcSecondaryProgressColor="#40009688"
-                    app:rcTextPositionPriority="inside"
-                    app:rcTextProgress="30.000$"
-                    app:rcTextProgressColor="@android:color/white"
-                    app:rcTextProgressSize="15sp" />
-
-                <TextView
-                    android:id="@+id/tv_payback_period_zero"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:text="0$"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar2" />
-
-                <TextView
-                    android:id="@+id/tv_payback_period"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Доход в год"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_payback_period_sum"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar2" />
-
-                <TextView
-                    android:id="@+id/tv_payback_period_sum"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="50.000$"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar2" />
-
-                <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
-                    android:id="@+id/textRoundCornerProgressBar4"
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_payback_period"
-                    app:rcBackgroundColor="#0A000000"
-                    app:rcMax="50000"
-                    app:rcProgress="10000"
-                    app:rcProgressColor="#0A85F1"
-                    app:rcRadius="80dp"
-                    app:rcReverse="false"
-                    app:rcSecondaryProgress="50000"
-                    app:rcSecondaryProgressColor="#40009688"
-                    app:rcTextInsideGravity="start"
-                    app:rcTextPositionPriority="inside"
-                    app:rcTextProgress="10.000$"
-                    app:rcTextProgressColor="@android:color/white"
-                    app:rcTextProgressMargin="8dp"
-                    app:rcTextProgressSize="15sp" />
-
-
-                <TextView
-                    android:id="@+id/tv_donat_invest_zero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:gravity="start"
+                    android:layout_marginStart="8dp"
+                    android:autoSizeMaxTextSize="100sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
                     android:maxLines="1"
-                    android:text="👍"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2.5"
+                    android:shadowDy="2.3"
+                    android:shadowRadius="2.6"
                     android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:visibility="visible"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar4" />
-
-                <TextView
-                    android:id="@+id/tv_donat_invest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="Уровень сложности"
-                    android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="26sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar4" />
+                    app:layout_constraintStart_toEndOf="@+id/profile_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="o" />
 
-                <TextView
-                    android:id="@+id/tv_donat_invest_sum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:text="😭"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:visibility="visible"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar4" />
-
-
-                <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
-                    android:id="@+id/textRoundCornerProgressBar3"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_business_info"
                     android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_donat_invest"
-                    app:rcBackgroundColor="#0A000000"
-                    app:rcMax="3"
-                    app:rcProgress="2"
-                    app:rcProgressColor="#EF5350"
-                    app:rcRadius="80dp"
-                    app:rcReverse="false"
-                    app:rcSecondaryProgress="3"
-                    app:rcSecondaryProgressColor="#40009688"
-                    app:rcTextPositionPriority="inside"
-                    app:rcTextProgress="Средний"
-                    app:rcTextProgressColor="@android:color/white"
-                    app:rcTextProgressSize="15sp" />
-
-                <TextView
-                    android:id="@+id/tv_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:paddingTop="20dp"
-                    android:text="14"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:paddingTop="20dp"
-                    android:src="@drawable/ic_baseline_thumb_down_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/view"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="2dp"
                     android:layout_height="0dp"
-                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:src="@drawable/ic_baseline_thumb_up_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/view"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+                    app:layout_constraintTop_toBottomOf="@+id/item_name">
 
 
-                <TextView
-                    android:id="@+id/tv_dislike"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:paddingTop="20dp"
-                    android:text="88"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView5"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+                    <TextView
+                        android:id="@+id/tv_business_cost_zero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="0$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/item_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Сумма инвестиций"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_business_cost_sum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="50.000$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="22dp"
-                    android:paddingEnd="4dp"
-                    android:src="@drawable/ic_baseline_comment_24"
+                    <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                        android:id="@+id/textRoundCornerProgressBar2"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/item_city"
+                        app:rcBackgroundColor="#0A000000"
+                        app:rcMax="50000"
+                        app:rcProgress="30000"
+                        app:rcProgressColor="#21B629"
+                        app:rcRadius="80dp"
+                        app:rcReverse="false"
+                        app:rcSecondaryProgress="50000"
+                        app:rcSecondaryProgressColor="#40009688"
+                        app:rcTextPositionPriority="inside"
+                        app:rcTextProgress="30.000$"
+                        app:rcTextProgressColor="@android:color/white"
+                        app:rcTextProgressSize="15sp" />
 
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_comment"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+                    <TextView
+                        android:id="@+id/tv_payback_period_zero"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="0$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar2" />
 
-                <TextView
-                    android:id="@+id/tv_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    android:text="66"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+                    <TextView
+                        android:id="@+id/tv_payback_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Доход в год"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_payback_period_sum"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar2" />
+
+                    <TextView
+                        android:id="@+id/tv_payback_period_sum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="50.000$"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar2" />
+
+                    <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                        android:id="@+id/textRoundCornerProgressBar4"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_payback_period"
+                        app:rcBackgroundColor="#0A000000"
+                        app:rcMax="50000"
+                        app:rcProgress="10000"
+                        app:rcProgressColor="#0A85F1"
+                        app:rcRadius="80dp"
+                        app:rcReverse="false"
+                        app:rcSecondaryProgress="50000"
+                        app:rcSecondaryProgressColor="#40009688"
+                        app:rcTextInsideGravity="start"
+                        app:rcTextPositionPriority="inside"
+                        app:rcTextProgress="10.000$"
+                        app:rcTextProgressColor="@android:color/white"
+                        app:rcTextProgressMargin="8dp"
+                        app:rcTextProgressSize="15sp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_donat_invest_zero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:maxLines="1"
+                        android:text="👍"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar4" />
+
+                    <TextView
+                        android:id="@+id/tv_donat_invest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="Уровень сложности"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar4" />
+
+                    <TextView
+                        android:id="@+id/tv_donat_invest_sum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text="😭"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar4" />
+
+
+                    <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                        android:id="@+id/textRoundCornerProgressBar3"
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_donat_invest"
+                        app:rcBackgroundColor="#0A000000"
+                        app:rcMax="3"
+                        app:rcProgress="2"
+                        app:rcProgressColor="#EF5350"
+                        app:rcRadius="80dp"
+                        app:rcReverse="false"
+                        app:rcSecondaryProgress="3"
+                        app:rcSecondaryProgressColor="#40009688"
+                        app:rcTextPositionPriority="inside"
+                        app:rcTextProgress="Средний"
+                        app:rcTextProgressColor="@android:color/white"
+                        app:rcTextProgressSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:paddingTop="20dp"
+                        android:text="14"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:paddingTop="20dp"
+                        android:src="@drawable/ic_baseline_thumb_down_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/view"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:src="@drawable/ic_baseline_thumb_up_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/view"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+
+
+                    <TextView
+                        android:id="@+id/tv_dislike"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:paddingTop="20dp"
+                        android:text="88"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="22dp"
+                        android:paddingEnd="4dp"
+                        android:src="@drawable/ic_baseline_comment_24"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_comment"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+
+                    <TextView
+                        android:id="@+id/tv_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:text="66"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textRoundCornerProgressBar3" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <FrameLayout
+                android:id="@+id/left_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/overlay_black"
+                android:visibility="gone">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/left_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/overlay_black"
-            android:visibility="gone">
+            <FrameLayout
+                android:id="@+id/right_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/overlay_black"
+                android:visibility="gone">
 
-        </FrameLayout>
+            </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/right_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/overlay_black"
-            android:visibility="gone">
+            <FrameLayout
+                android:id="@+id/top_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/bottom_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
-        <FrameLayout
-            android:id="@+id/top_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" />
+        </androidx.cardview.widget.CardView>
 
-        <FrameLayout
-            android:id="@+id/bottom_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" />
 
-    </androidx.cardview.widget.CardView>
 
 </com.wajahatkarim3.easyflipview.EasyFlipView>
+
+

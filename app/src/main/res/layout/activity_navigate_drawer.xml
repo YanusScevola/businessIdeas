@@ -5,17 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/content_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <include
-            android:id="@+id/toolbar_container"
-            layout="@layout/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
@@ -24,7 +18,13 @@
             android:layout_height="match_parent"
             />
 
-    </LinearLayout>
+        <include
+            android:id="@+id/toolbar_container"
+            layout="@layout/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
 
 
 </FrameLayout>

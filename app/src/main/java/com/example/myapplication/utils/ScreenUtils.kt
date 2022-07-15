@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.ImageView
 import java.io.File
 import java.io.FileOutputStream
@@ -19,8 +20,23 @@ class ScreenUtils {
     companion object{
         fun getScreenShotFromView(view: View): Bitmap? {
             var screenshot: Bitmap? = null
+
+            val vto: ViewTreeObserver = view.viewTreeObserver
+            vto.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                        view.getViewTreeObserver().removeGlobalOnLayoutListener(this)
+                    } else {
+                        view.getViewTreeObserver().removeOnGlobalLayoutListener(this)
+                    }
+                    val width: Int = view.getMeasuredWidth()
+                    val height: Int = view.getMeasuredHeight()
+                }
+            })
+
             try {
                 screenshot = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+                Log.e("tag", "razmer" + view.height)
                 val canvas = Canvas(screenshot)
                 view.draw(canvas)
             } catch (e: Exception) {

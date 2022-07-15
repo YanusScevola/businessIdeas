@@ -10,6 +10,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -82,7 +83,7 @@ class CardStackAdapter(
                     delay(800)
                     activity.runOnUiThread {
                         holder.containerInfo.visibility = View.VISIBLE
-                        val bitmap = ScreenUtils.getScreenShotFromView(holder.easyFlipView)
+                        val bitmap = ScreenUtils.getScreenShotFromView(holder.cardViewFront)
                         holder.image.setImageBitmap(bitmap)
                         holder.containerInfo.visibility = View.GONE
                     }
@@ -121,6 +122,7 @@ class CardStackAdapter(
         //var city: TextView = view.findViewById(R.id.tv_donat_invest)
         var image: ImageView = view.findViewById(R.id.item_image)
         val easyFlipView: EasyFlipView = view.findViewById(R.id.easy_flip_view)
+        val cardViewFront: CardView = view.findViewById(R.id.card_view_front)
         val containerInfo: ConstraintLayout = view.findViewById(R.id.container_info)
 
     }
